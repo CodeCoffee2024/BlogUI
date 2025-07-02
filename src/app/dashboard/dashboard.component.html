@@ -1,0 +1,37 @@
+<app-side-nav 
+    [isOpen]="(sideNavService.isOpen$ | async) && !(sideNavService.isDesktop$ | async)" 
+    (closed)="sideNavService.close()">
+    <!-- Your navigation content here -->
+    <div class="container">
+        <div class="row">
+            <div class="col-12 pt-3">
+                <h1 class="logo">Logo</h1>
+            </div>
+        </div>
+        <hr>
+        <ul>
+            <li class="menu-item fw-bold fs-4"><a routerLink="/">Home</a></li>
+            <li class="menu-item fw-bold fs-4"><a routerLink="/">Categories</a></li>
+            <li class="menu-item fw-bold fs-4"><a routerLink="/about">About</a></li>
+            <li class="menu-item fw-bold fs-4"><a routerLink="/contact">Contact</a></li>
+        </ul>
+    </div>
+</app-side-nav>
+<div class="container">
+    <div class="row">
+        <div class="col-6 pt-3">
+            <h1 class="logo">Logo</h1>
+        </div>
+        <div class="col-6 pt-3 d-flex justify-content-end">
+            <button 
+                *ngIf="(sideNavService.isMobile$ | async) || (sideNavService.isTablet$ | async)"
+                (click)="sideNavService.toggle()"
+                class="mobile-menu-btn btn btn-default fs-3 p-0 mt-2"
+            ><i class="bi bi-list fs-3"></i>
+            </button>
+        </div>
+    </div>
+</div>
+<hr>
+
+<router-outlet></router-outlet>

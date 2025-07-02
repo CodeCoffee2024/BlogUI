@@ -1,0 +1,24 @@
+<!-- Desktop Header -->
+<nav *ngIf="isDesktop" class="desktop-nav">
+    <ng-content></ng-content>
+</nav>
+
+<!-- Mobile/Tablet Drawer -->
+<ng-container *ngIf="!isDesktop">
+    <!-- Backdrop -->
+  <div *ngIf="isOpen" class="backdrop" (click)="close()"></div>
+    
+    <!-- Side Navigation -->
+    <aside 
+        [class.mobile]="isMobile"
+        [class.tablet]="isTablet"
+        [class.open]="isOpen"
+        class="side-nav"
+        (click)="preventClose($event)"
+    >
+        <button class="close-btn" (click)="close()">
+            <i class="bi bi-x-lg"></i>
+        </button>
+        <ng-content></ng-content>
+    </aside>
+</ng-container>
