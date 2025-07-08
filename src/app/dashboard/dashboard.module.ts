@@ -9,6 +9,8 @@ import { CategoryComponent } from './category/category.component';
 import { AboutComponent } from './about/about.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import { SideNavComponent } from '../shared/components/client/side-nav/side-nav.component';
+import { HeaderComponent } from '../shared/components/client/header/header.component';
+import { TruncatePipe } from '../shared/pipes/truncate.pipe';
 
 
 @NgModule({
@@ -19,7 +21,9 @@ import { SideNavComponent } from '../shared/components/client/side-nav/side-nav.
     CategoryComponent,
     AboutComponent,
     ContactUsComponent,
-    SideNavComponent
+    SideNavComponent,
+    HeaderComponent,
+    TruncatePipe
   ],
   imports: [
     CommonModule,

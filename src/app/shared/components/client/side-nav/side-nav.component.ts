@@ -1,4 +1,5 @@
 import { Component, HostListener, Input, Output, EventEmitter } from '@angular/core';
+import { CategoryResponse } from '../../../../dashboard/models/category';
 
 @Component({
   selector: 'app-side-nav',
@@ -6,6 +7,8 @@ import { Component, HostListener, Input, Output, EventEmitter } from '@angular/c
   styleUrls: ['./side-nav.component.scss']
 })
 export class SideNavComponent {
+  isCategoryOpen: boolean = false;
+  @Input() categories: CategoryResponse[] = [];
   @Input() isOpen = false;
   @Output() closed = new EventEmitter<void>();
   

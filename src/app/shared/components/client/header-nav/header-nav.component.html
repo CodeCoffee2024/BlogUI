@@ -1,0 +1,13 @@
+<ul class="nav">
+    <li 
+        *ngFor="let nav of navs" 
+        class="nav-item"
+    >
+        <a 
+        [routerLink]="currentNav(nav)?.link" 
+        class="nav-link d-flex align-items-center"
+        >
+        {{ currentNav(nav)?.label }}
+        </a>
+    </li>
+</ul>

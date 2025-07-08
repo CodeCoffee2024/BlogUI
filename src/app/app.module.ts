@@ -10,9 +10,8 @@ import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { InputComponent } from './shared/components/input/input.component';
 import { RegisterComponent } from './auth/register/register.component';
-import { HeaderComponent } from './shared/components/client/header/header.component';
 import { FooterComponent } from './shared/components/client/footer/footer.component';
-import { SideNavComponent } from './shared/components/client/side-nav/side-nav.component';
+import { HeaderNavComponent } from './shared/components/client/header-nav/header-nav.component';
 
 @NgModule({
   declarations: [
@@ -20,8 +19,8 @@ import { SideNavComponent } from './shared/components/client/side-nav/side-nav.c
     LoginComponent,
     InputComponent,
     RegisterComponent,
-    HeaderComponent,
     FooterComponent,
+    HeaderNavComponent,
   ],
   imports: [
     BrowserModule,
