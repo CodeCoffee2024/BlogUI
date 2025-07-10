@@ -1,0 +1,17 @@
+<app-side-nav 
+    [isOpen]="(sideNavService.isOpen$ | async) && !(sideNavService.isDesktop$ | async)" 
+    (closed)="sideNavService.close()">
+</app-side-nav>
+<app-header></app-header>
+<hr>
+
+<div class="container">
+    <div class="row">
+        <div class="col-12 h-100">
+            <div class="d-flex flex-column justify-content-center align-items-center" style="min-height: 100vh;">
+                <img src="assets/404.webp" class="img-fluid" style="max-width: 100%; height: auto;" alt="404 Not Found">
+                <p class="fs-2">Page Not Found</p>
+            </div>
+        </div>
+    </div>
+</div>

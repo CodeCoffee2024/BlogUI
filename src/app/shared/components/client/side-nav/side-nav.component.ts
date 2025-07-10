@@ -1,5 +1,7 @@
 import { Component, HostListener, Input, Output, EventEmitter } from '@angular/core';
 import { CategoryResponse } from '../../../../dashboard/models/category';
+import { environment } from '../../../../../../environment';
+import { DashboardService } from '../../../../dashboard/dashboard.service';
 
 @Component({
   selector: 'app-side-nav',
@@ -8,18 +10,25 @@ import { CategoryResponse } from '../../../../dashboard/models/category';
 })
 export class SideNavComponent {
   isCategoryOpen: boolean = false;
-  @Input() categories: CategoryResponse[] = [];
   @Input() isOpen = false;
   @Output() closed = new EventEmitter<void>();
+  categories: CategoryResponse[] = [];
   
   isMobile = false;
   isTablet = false;
   isDesktop = false;
   
-  maxTabletWidth = 768; // Adjust as needed
-  desktopWidth = 1024; // Adjust as needed
-  
+  maxTabletWidth = 768;
+  desktopWidth = 1024;
+  constructor(private dashboardService: DashboardService) {
+
+  }
   ngOnInit() {
+    this.dashboardService.getCategories().subscribe({
+      next: (res) =>{
+        this.categories = res?.data ?? [];
+      }
+    });
     this.checkScreenSize();
   }
   
@@ -34,6 +43,9 @@ export class SideNavComponent {
     if (this.isDesktop && this.isOpen) {
       this.close();
     }
+  }
+  getLink(category) {
+    return environment.uiUrl+'category/'+category
   }
   
   close() {

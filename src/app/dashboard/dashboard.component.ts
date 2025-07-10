@@ -1,7 +1,5 @@
 import { AfterViewInit, Component, HostListener, OnDestroy, OnInit } from '@angular/core';
 import { SideNavService } from '../shared/components/client/side-nav/side-nav.service';
-import { CategoryComponent } from './category/category.component';
-import { CategoryService } from './category/category.service';
 import { LoadingService } from '../core/services/loading.service';
 import { debounceTime, finalize, forkJoin, fromEvent, Subscription } from 'rxjs';
 import { ToastService } from '../core/services/toast.service';
@@ -17,11 +15,10 @@ import { DomSanitizer } from '@angular/platform-browser';
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss']
 })
-export class DashboardComponent implements OnInit,AfterViewInit {
+export class DashboardComponent implements OnInit, AfterViewInit {
   currentIndex = 0;
   isMobile = false;
   isTablet = false;
-  categories: CategoryResponse[] = [];
   posts: PostDashboardResponse;
   groupedPosts: any[][] = [];
   postsPerSlide = 1;
@@ -47,16 +44,16 @@ getSafeImage(path: string) {
   return this.sanitizer.bypassSecurityTrustStyle(`url(${this.getImage(path)})`);
 }
   get top4() {
-    return this.posts.top4;
+    return this.posts?.top4;
   }
   get top2() {
-    return this.posts.top2;
+    return this.posts?.top2;
   }
   get highlights() {
-    return this.posts.highlights;
+    return this.posts?.highlights;
   }
   get latest() {
-    return this.posts.latest;
+    return this.posts?.latest;
   }
   getImage(file) {
     return getImage(file);
@@ -65,13 +62,11 @@ getSafeImage(path: string) {
     this.loadingService.show();
 
     forkJoin({
-      categories: this.dashboardService.getCategories(),
       posts: this.dashboardService.getPosts()
     })
     .pipe(finalize(() => this.loadingService.hide()))
     .subscribe({
       next: (res) => {
-        this.categories = res.categories?.data ?? [];
         this.posts = res.posts?.data ?? null;
 
         this.screenSizeService.screenSize$.subscribe(size => {

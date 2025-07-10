@@ -37,7 +37,7 @@
                     </a>
 
                     <ul id="categoriesSubmenu" class="collapse list-unstyled ps-3 pt-2" *ngFor="let category of categories">
-                        <li><a routerLink="/category/tech" class="text-decoration-none">{{category.name}}</a></li>
+                        <li><a [href]="getLink(category.name)" class="text-decoration-none">{{category.name}}</a></li>
                     </ul>
                 </li>
                 <li class="menu-item fw-bold fs-4"><a routerLink="/about">About</a></li>
