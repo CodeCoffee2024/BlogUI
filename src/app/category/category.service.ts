@@ -13,7 +13,7 @@ export class CategoryService extends GenericService {
   constructor(private httpClient: HttpClient) {
     super(httpClient);
   }
-  getPostByCategory(name): Observable<GenericListingResult<PostResponse[]>> {
-    return this.get(`dashboard/GetPostsByCategory/${name}`, null, false);
+  getPostByCategory(name, page = 1): Observable<GenericListingResult<PostResponse[]>> {
+    return this.get(`dashboard/GetPostsByCategory/${name}?pageNumber=${page}`, null, false);
   }
 }

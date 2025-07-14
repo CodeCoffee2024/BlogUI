@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { SideNavService } from '../side-nav/side-nav.service';
 import { CategoryResponse } from '../../../../dashboard/models/category';
 import { DashboardService } from '../../../../dashboard/dashboard.service';
@@ -12,6 +12,7 @@ export class HeaderComponent implements OnInit {
 
   isCategoryOpen: boolean = false;
   @Input() categories: CategoryResponse[] = [];
+  @Output() categoryResult: EventEmitter<CategoryResponse[]> = new EventEmitter<CategoryResponse[]>();
   constructor(
     public sideNavService: SideNavService,
     private dashboardService: DashboardService
@@ -22,6 +23,7 @@ export class HeaderComponent implements OnInit {
     this.dashboardService.getCategories().subscribe({
       next: (res) =>{
         this.categories = res?.data ?? [];
+        this.categoryResult.emit(this.categories);
       }
     });
   }

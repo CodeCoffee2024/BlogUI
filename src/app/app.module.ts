@@ -11,7 +11,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { InputComponent } from './shared/components/input/input.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { FooterComponent } from './shared/components/client/footer/footer.component';
-import { HeaderNavComponent } from './shared/components/client/header-nav/header-nav.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +19,6 @@ import { HeaderNavComponent } from './shared/components/client/header-nav/header
     InputComponent,
     RegisterComponent,
     FooterComponent,
-    HeaderNavComponent,
   ],
   imports: [
     BrowserModule,

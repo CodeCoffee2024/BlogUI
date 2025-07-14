@@ -13,6 +13,7 @@ import { Page } from '../shared/models/page';
 import { HeaderNav, NavItem } from '../shared/models/nav.config';
 import { ActivatedRoute } from '@angular/router';
 import { CategoryService } from './category.service';
+import { GenericListingResult } from '../shared/models/api-result.model';
 
 @Component({
   selector: 'app-category',
@@ -21,10 +22,15 @@ import { CategoryService } from './category.service';
 })
 export class CategoryComponent implements OnInit {
   navigations: NavItem[] = [];
+  categories: CategoryResponse[]=[];
+  page = 1;
   currentNavigation = ''
   isMobile = false;
   isTablet = false;
+  categoryName = '';
   posts: PostResponse[];
+  totalCount = 0;
+  listingData;
   constructor(
     public sideNavService: SideNavService,
     private categoryService: CategoryService,
@@ -49,31 +55,43 @@ export class CategoryComponent implements OnInit {
     ];
 
     this.activatedRoute.paramMap.subscribe(params => {
-      const categoryName = params.get('name') ?? '';
+      this.categoryName = params.get('name') ?? '';
 
       this.navigations = [
         ...this.navigations,
         {
           page: Page.None,
-          label: categoryName,
+          label: this.categoryName,
           link: ''
         }
       ];
-
-      this.categoryService.getPostByCategory(categoryName)
-        .pipe(
-          finalize(() => this.loadingService.hide())
-        )
-        .subscribe({
-          next: (res) => {
-            this.posts = (res.data?.items || []).flat() ?? [];
-            console.log(res)
-          },
-          error: () => {
-            this.toastService.error('Failed to load posts.');
-          }
-        });
     });
+    this.load(this.page);
+  }
+  load(page) {
+    this.categoryService.getPostByCategory(this.categoryName, page)
+      .pipe(
+        finalize(() => this.loadingService.hide())
+      )
+      .subscribe({
+        next: (res) => {
+          this.posts = (res.data?.items || []).flat() ?? [];
+          this.listingData = res.data;
+          this.totalCount = res.data['totalCount'];
+        },
+        error: () => {
+          this.toastService.error('Failed to load posts.');
+        }
+      });
   }
 
+  onPageChange(page) {
+    this.loadingService.show();
+    this.load(page);
+  }
+
+  getCategories(categories) {
+    this.categories = categories;
+    console.log(this.categories)
+  }
 }

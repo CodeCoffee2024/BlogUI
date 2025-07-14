@@ -15,7 +15,7 @@ export class GenericListingResult<T> {
     data: ListingData<T> | null;
     page: number;
     pageSize: number;
-    totalEntries: number;
+    totalCount: number;
     totalPages: number;
     totalRecords: number;
 }

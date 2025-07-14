@@ -5,6 +5,9 @@ import { HeaderComponent } from './components/client/header/header.component';
 import { TruncatePipe } from './pipes/truncate.pipe';
 import { PostTemplateComponent } from './components/post-template/post-template.component';
 import { RouterModule } from '@angular/router';
+import { PaginationComponent } from './components/pagination/pagination.component';
+import { NgbPagination } from '@ng-bootstrap/ng-bootstrap';
+import { HeaderNavComponent } from './components/client/header-nav/header-nav.component';
 
 
 
@@ -13,8 +16,10 @@ import { RouterModule } from '@angular/router';
       SideNavComponent,
       HeaderComponent,
       TruncatePipe,
-      PostTemplateComponent
-    ],
+      PostTemplateComponent,
+      PaginationComponent,
+      HeaderNavComponent
+  ],
   imports: [
     CommonModule,
     RouterModule
@@ -24,7 +29,9 @@ import { RouterModule } from '@angular/router';
     HeaderComponent,
     TruncatePipe,
     PostTemplateComponent,
-    RouterModule
+    RouterModule,
+    PaginationComponent,
+    HeaderNavComponent
   ]
 })
 export class SharedModule { }
