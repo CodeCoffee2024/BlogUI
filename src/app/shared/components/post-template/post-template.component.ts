@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { PostResponse } from '../../../dashboard/models/post';
 import { getImage } from '../../utils/file.util';
+import { environment } from '../../../../../environment';
 
 @Component({
   selector: 'app-post-template',
@@ -13,5 +14,10 @@ export class PostTemplateComponent {
 
   getImage(file) {
     return getImage(file);
+  }
+
+  getLink(id) {
+    console.log(environment.uiUrl+"post/"+id)
+    return environment.uiUrl+"post/"+id;
   }
 }

@@ -4,7 +4,7 @@
 </app-side-nav>
 <app-header (categoryResult)="getCategories($event)"></app-header>
 <hr>
-<div class="container">
+<div class="container" *ngIf="posts.length > 0">
     <app-header-nav [navs]="navigations"></app-header-nav>
     <div class="row">    
         <div class="col-12">
@@ -26,7 +26,7 @@
                 <p class="fs-3 fw-bold">Categories</p>
             </div>
             <div class="row" *ngFor="let category of categories">
-                <p class="fs-4">{{ category.name }}</p>
+                <p class="fs-4"><a [href]="getLink(category.name)">{{ category.name }}</a></p>
             </div>
         </div>
     </div>
@@ -35,7 +35,9 @@
             <app-pagination [listingData]="listingData" (changePage)="onPageChange($event)"></app-pagination>
         </div>
     </div>
-    <div class="row" *ngIf="!posts || posts.length === 0">
+</div>
+<div class="container" *ngIf="!posts || posts.length === 0">
+    <div class="row">
         <div class="col-12 h-100">
             <div class="d-flex flex-column justify-content-center align-items-center" style="min-height: 100vh;">
                 <img src="assets/404-1.webp" class="img-fluid" style="max-width: 100%; height: auto;" alt="No Results Found">

@@ -14,6 +14,7 @@ import { HeaderNav, NavItem } from '../shared/models/nav.config';
 import { ActivatedRoute } from '@angular/router';
 import { CategoryService } from './category.service';
 import { GenericListingResult } from '../shared/models/api-result.model';
+import { environment } from '../../../environment';
 
 @Component({
   selector: 'app-category',
@@ -92,6 +93,8 @@ export class CategoryComponent implements OnInit {
 
   getCategories(categories) {
     this.categories = categories;
-    console.log(this.categories)
+  }
+  getLink(categoryName) {
+    return environment.uiUrl+'category/'+categoryName;
   }
 }
