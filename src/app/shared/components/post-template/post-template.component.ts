@@ -17,7 +17,6 @@ export class PostTemplateComponent {
   }
 
   getLink(id) {
-    console.log(environment.uiUrl+"post/"+id)
     return environment.uiUrl+"post/"+id;
   }
 }

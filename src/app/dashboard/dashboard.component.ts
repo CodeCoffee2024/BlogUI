@@ -19,6 +19,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   currentIndex = 0;
   isMobile = false;
   isTablet = false;
+  isLoading = true;
   posts: PostDashboardResponse;
   groupedPosts: any[][] = [];
   postsPerSlide = 1;
@@ -40,9 +41,9 @@ export class DashboardComponent implements OnInit, AfterViewInit {
       });
     }
   }
-getSafeImage(path: string) {
-  return this.sanitizer.bypassSecurityTrustStyle(`url(${this.getImage(path)})`);
-}
+  getSafeImage(path: string) {
+    return this.sanitizer.bypassSecurityTrustStyle(`url(${this.getImage(path)})`);
+  }
   get top4() {
     return this.posts?.top4;
   }
@@ -59,12 +60,16 @@ getSafeImage(path: string) {
     return getImage(file);
   }
   ngOnInit(): void {
+    this.isLoading = true;
     this.loadingService.show();
 
     forkJoin({
       posts: this.dashboardService.getPosts()
     })
-    .pipe(finalize(() => this.loadingService.hide()))
+    .pipe(finalize(() => {
+      this.loadingService.hide()
+      this.isLoading = false;
+    }))
     .subscribe({
       next: (res) => {
         this.posts = res.posts?.data ?? null;

@@ -1,0 +1,13 @@
+<app-side-nav 
+    [isOpen]="(sideNavService.isOpen$ | async) && !(sideNavService.isDesktop$ | async)" 
+    (closed)="sideNavService.close()">
+</app-side-nav>
+<app-header></app-header>
+<hr>
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            Contact Us Here
+        </div>
+    </div>
+</div>

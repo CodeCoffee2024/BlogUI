@@ -3,6 +3,6 @@ export enum Page {
     Dashboard = 'dashboard',
     Categories = 'categories',
     About = 'about',
-    Contact = 'contact',
+    Contact = 'contact Us',
     None = ''
 }

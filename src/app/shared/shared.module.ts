@@ -6,7 +6,6 @@ import { TruncatePipe } from './pipes/truncate.pipe';
 import { PostTemplateComponent } from './components/post-template/post-template.component';
 import { RouterModule } from '@angular/router';
 import { PaginationComponent } from './components/pagination/pagination.component';
-import { NgbPagination } from '@ng-bootstrap/ng-bootstrap';
 import { HeaderNavComponent } from './components/client/header-nav/header-nav.component';
 
 
