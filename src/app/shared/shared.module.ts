@@ -7,30 +7,31 @@ import { PostTemplateComponent } from './components/post-template/post-template.
 import { RouterModule } from '@angular/router';
 import { PaginationComponent } from './components/pagination/pagination.component';
 import { HeaderNavComponent } from './components/client/header-nav/header-nav.component';
-
-
+import { AdminSidebarComponent } from './components/admin/admin-sidebar/admin-sidebar.component';
+import { AdminHeaderComponent } from './components/admin/admin-header/admin-header.component';
 
 @NgModule({
-  declarations: [
-      SideNavComponent,
-      HeaderComponent,
-      TruncatePipe,
-      PostTemplateComponent,
-      PaginationComponent,
-      HeaderNavComponent
-  ],
-  imports: [
-    CommonModule,
-    RouterModule
-  ],
-  exports: [
-    SideNavComponent,
-    HeaderComponent,
-    TruncatePipe,
-    PostTemplateComponent,
-    RouterModule,
-    PaginationComponent,
-    HeaderNavComponent
-  ]
+	declarations: [
+		SideNavComponent,
+		HeaderComponent,
+		TruncatePipe,
+		PostTemplateComponent,
+		PaginationComponent,
+		HeaderNavComponent,
+		AdminSidebarComponent,
+		AdminHeaderComponent,
+	],
+	imports: [CommonModule, RouterModule],
+	exports: [
+		SideNavComponent,
+		HeaderComponent,
+		TruncatePipe,
+		PostTemplateComponent,
+		RouterModule,
+		PaginationComponent,
+		HeaderNavComponent,
+		AdminSidebarComponent,
+		AdminHeaderComponent,
+	],
 })
-export class SharedModule { }
+export class SharedModule {}

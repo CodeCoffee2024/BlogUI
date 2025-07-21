@@ -1,8 +1,9 @@
 export const environment = {
-    production: false,
-    apiUrl: 'http://localhost:5128/api/',
-    uiUrl: 'http://localhost:4200/',
-    appVersion: '1.0.0',
-    folderPath: 'http://localhost:5128/uploads/',
-    name: "Blog ni Kopi"
+	production: false,
+	apiUrl: 'https://ld8vj47l-5128.asse.devtunnels.ms/api/',
+	uiUrl: 'https://2jhkq1rc-4200.asse.devtunnels.ms/',
+	appVersion: '1.0.0',
+	folderPath:
+		'https://ld8vj47l-5128.asse.devtunnels.ms/uploads/',
+	name: 'Blog ni Kopi',
 };

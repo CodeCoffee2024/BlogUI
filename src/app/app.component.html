@@ -1,6 +1,9 @@
-<div class="loading-overlay" *ngIf="loadingService.loading$ | async">
-    <div class="loader"></div>
+<div
+	class="loading-overlay"
+	*ngIf="loadingService.loading$ | async"
+>
+	<div class="loader"></div>
 </div>
 <div class="theme-light">
-  <router-outlet></router-outlet>
+	<router-outlet></router-outlet>
 </div>

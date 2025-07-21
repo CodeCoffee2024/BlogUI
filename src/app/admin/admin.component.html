@@ -1,0 +1,14 @@
+<div class="wrapper">
+	<app-admin-header
+		[isSidebarOpen]="isSidebarOpen"
+		[isDesktop]="isDesktop"
+		(toggleSidebar)="toggleSidebar()"
+	>
+	</app-admin-header>
+	<app-admin-sidebar
+		[isSidebarOpen]="isSidebarOpen"
+		[isDesktop]="isDesktop"
+		(closeSidebar)="closeSidebar()"
+	>
+	</app-admin-sidebar>
+</div>

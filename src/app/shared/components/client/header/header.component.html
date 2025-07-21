@@ -1,53 +1,61 @@
 <div class="container pt-3">
-    <div class="row align-items-center">
-        <!-- Logo Section -->
-        <div class="col-6 col-lg-12 text-start text-lg-center">
-            <h1 class="logo">Logo</h1>
-            </div>
-
-            <!-- Mobile Menu Button -->
-            <div class="col-6 d-flex justify-content-end d-lg-none">
-            <button 
-                *ngIf="(sideNavService.isMobile$ | async) || (sideNavService.isTablet$ | async)"
-                (click)="sideNavService.toggle()"
-                class="btn btn-default fs-3 p-0"
-                aria-label="Toggle sidenav"
-            >
-                <i class="bi bi-list"></i>
-            </button>
-        </div>
+  <div class="row align-items-center">
+    <!-- Logo Section -->
+    <div class="col-6 col-lg-12 text-start text-lg-center">
+      <h1 class="logo">Logo</h1>
     </div>
-    <div class="row" *ngIf="sideNavService.isDesktop$ | async">
-        <div class="col-12 p-0">
-            <ul class="d-flex mb-0">
-                <li class="menu-item m-2 fw-bold fs-6"><a routerLink="/">Home</a></li>
-                <li class="menu-item m-2 fw-bold">
-                    <a 
-                        class="text-decoration-none d-flex justify-content-between align-items-center"
-                        href="javascript:void(0)"
-                        (click)="isCategoryOpen = !isCategoryOpen"
-                    >
-                        Categories
-                        <i 
-                        class="bi bi-chevron-down fs-6 transition-rotate"
-                        [class.rotate-up]="isCategoryOpen"
-                        ></i>
-                    </a>
 
-                    <ul 
-                        class="submenu list-unstyled bg-white shadow-sm position-absolute mt-2 px-3 py-2 rounded"
-                        [class.d-none]="!isCategoryOpen"
-                    >
-                        <li *ngFor="let category of categories">
-                        <a routerLink="/category/{{ category.name | lowercase }}" class="text-decoration-none d-block py-1">
-                            {{ category.name }}
-                        </a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="menu-item m-2 fw-bold"><a routerLink="/about">About</a></li>
-                <li class="menu-item m-2 fw-bold"><a routerLink="/contact-us">Contact Us</a></li>
-            </ul>
-        </div>
+    <!-- Mobile Menu Button -->
+    <div class="col-6 d-flex justify-content-end d-lg-none">
+      <button
+        *ngIf="
+          (sideNavService.isMobile$ | async) ||
+          (sideNavService.isTablet$ | async)
+        "
+        (click)="sideNavService.toggle()"
+        class="btn btn-default fs-3 p-0"
+        aria-label="Toggle sidenav"
+      >
+        <i class="bi bi-list"></i>
+      </button>
     </div>
+  </div>
+  <div class="row" *ngIf="sideNavService.isDesktop$ | async">
+    <div class="col-12 p-0">
+      <ul class="d-flex mb-0">
+        <li class="menu-item m-2 fw-bold fs-6"><a routerLink="/">Home</a></li>
+        <li class="menu-item m-2 fw-bold">
+          <a
+            class="text-decoration-none d-flex justify-content-between align-items-center"
+            href="javascript:void(0)"
+            (click)="isCategoryOpen = !isCategoryOpen"
+          >
+            Categories
+            <i
+              class="bi bi-chevron-down fs-6 transition-rotate"
+              [class.rotate-up]="isCategoryOpen"
+            ></i>
+          </a>
+
+          <ul
+            class="submenu list-unstyled bg-white shadow-sm position-absolute mt-2 px-3 py-2 rounded"
+            [class.d-none]="!isCategoryOpen"
+          >
+            <li *ngFor="let category of categories">
+              <a
+                routerLink="/category/{{ category.name | lowercase }}"
+                class="text-decoration-none d-block py-1"
+              >
+                {{ category.name }}
+              </a>
+            </li>
+          </ul>
+        </li>
+        <li class="menu-item m-2 fw-bold"><a routerLink="/about">About</a></li>
+        <li class="menu-item m-2 fw-bold">
+          <a routerLink="/contact-us">Contact Us</a>
+        </li>
+      </ul>
+    </div>
+  </div>
 </div>

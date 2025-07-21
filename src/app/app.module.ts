@@ -13,22 +13,22 @@ import { RegisterComponent } from './auth/register/register.component';
 import { FooterComponent } from './shared/components/client/footer/footer.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    LoginComponent,
-    InputComponent,
-    RegisterComponent,
-    FooterComponent,
-  ],
-  imports: [
-    BrowserModule,
-    CommonModule,
-    ReactiveFormsModule,
-    RouterModule,
-    HttpClientModule,
-    AppRoutingModule
-  ],
-  providers: [],
-  bootstrap: [AppComponent],
+	declarations: [
+		AppComponent,
+		LoginComponent,
+		InputComponent,
+		RegisterComponent,
+		FooterComponent,
+	],
+	imports: [
+		BrowserModule,
+		CommonModule,
+		ReactiveFormsModule,
+		RouterModule,
+		HttpClientModule,
+		AppRoutingModule,
+	],
+	providers: [],
+	bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

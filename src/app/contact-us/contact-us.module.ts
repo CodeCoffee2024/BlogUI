@@ -5,15 +5,12 @@ import { ContactUsRoutingModule } from './contact-us-routing.module';
 import { SharedModule } from '../shared/shared.module';
 import { ContactUsComponent } from './contact-us.component';
 
-
 @NgModule({
-  declarations: [
-    ContactUsComponent
-  ],
-  imports: [
-    CommonModule,
-    ContactUsRoutingModule,
-    SharedModule
-  ]
+	declarations: [ContactUsComponent],
+	imports: [
+		CommonModule,
+		ContactUsRoutingModule,
+		SharedModule,
+	],
 })
-export class ContactUsModule { }
+export class ContactUsModule {}
