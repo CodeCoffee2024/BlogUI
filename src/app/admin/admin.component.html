@@ -11,4 +11,12 @@
 		(closeSidebar)="closeSidebar()"
 	>
 	</app-admin-sidebar>
+	<div
+		class="container"
+		[class]="
+			isDesktop && isSidebarOpen ? 'open-sidebar' : ''
+		"
+	>
+		<router-outlet></router-outlet>
+	</div>
 </div>

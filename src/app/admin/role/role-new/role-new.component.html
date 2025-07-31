@@ -1,0 +1,21 @@
+<div class="row">
+	<div class="col-12">
+		<p class="fs-3">New Role</p>
+	</div>
+</div>
+<div class="row">
+	<div class="col-12">
+		<app-admin-header-nav
+			[navs]="navigations"
+		></app-admin-header-nav>
+	</div>
+</div>
+<div class="row" *ngIf="!isLoading">
+	<div class="col-12 mt-2">
+		<app-role-form
+			[form]="form"
+			[permissions]="permissions"
+			(resultId)="onSubmit($event)"
+		></app-role-form>
+	</div>
+</div>

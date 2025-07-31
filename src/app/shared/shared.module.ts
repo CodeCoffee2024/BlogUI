@@ -9,6 +9,16 @@ import { PaginationComponent } from './components/pagination/pagination.componen
 import { HeaderNavComponent } from './components/client/header-nav/header-nav.component';
 import { AdminSidebarComponent } from './components/admin/admin-sidebar/admin-sidebar.component';
 import { AdminHeaderComponent } from './components/admin/admin-header/admin-header.component';
+import { AdminHeaderNavComponent } from './components/admin/admin-header-nav/admin-header-nav.component';
+import { ListingHeaderComponent } from './components/admin/listing-header/listing-header.component';
+import {
+	FormsModule,
+	ReactiveFormsModule,
+} from '@angular/forms';
+import { StatusLabelsComponent } from './components/status-labels/status-labels.component';
+import { ListingPaginationComponent } from './components/admin/listing-pagination/listing-pagination.component';
+import { AdminAuditComponent } from './components/admin/admin-audit/admin-audit.component';
+import { AdminNotificationComponent } from './components/admin/admin-notification/admin-notification.component';
 
 @NgModule({
 	declarations: [
@@ -20,8 +30,19 @@ import { AdminHeaderComponent } from './components/admin/admin-header/admin-head
 		HeaderNavComponent,
 		AdminSidebarComponent,
 		AdminHeaderComponent,
+		AdminHeaderNavComponent,
+		ListingHeaderComponent,
+		StatusLabelsComponent,
+		ListingPaginationComponent,
+		AdminAuditComponent,
+		AdminNotificationComponent,
 	],
-	imports: [CommonModule, RouterModule],
+	imports: [
+		CommonModule,
+		RouterModule,
+		ReactiveFormsModule,
+		FormsModule,
+	],
 	exports: [
 		SideNavComponent,
 		HeaderComponent,
@@ -32,6 +53,14 @@ import { AdminHeaderComponent } from './components/admin/admin-header/admin-head
 		HeaderNavComponent,
 		AdminSidebarComponent,
 		AdminHeaderComponent,
+		AdminHeaderNavComponent,
+		ListingHeaderComponent,
+		ReactiveFormsModule,
+		FormsModule,
+		StatusLabelsComponent,
+		ListingPaginationComponent,
+		AdminAuditComponent,
+		AdminNotificationComponent,
 	],
 })
 export class SharedModule {}

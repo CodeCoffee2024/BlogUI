@@ -9,6 +9,7 @@ import { SystemService } from '../../../services/system.service';
 import { finalize } from 'rxjs';
 import { LoadingService } from '../../../../core/services/loading.service';
 import { ModuleGroupDto } from '../../../dtos/module-group.dto';
+import { Router } from '@angular/router';
 
 @Component({
 	selector: 'app-admin-sidebar',
@@ -24,7 +25,8 @@ export class AdminSidebarComponent implements OnInit {
 	@Output() closeSidebar = new EventEmitter<void>();
 	constructor(
 		private systemService: SystemService,
-		private loadingService: LoadingService
+		private loadingService: LoadingService,
+		private route: Router
 	) {}
 	// get Modules(): string[] {
 	//   return Modules
@@ -68,5 +70,8 @@ export class AdminSidebarComponent implements OnInit {
 		if (!this.isDesktop) {
 			this.closeSidebar.emit();
 		}
+	}
+	navigate(link) {
+		this.route.navigate(['admin' + link]);
 	}
 }

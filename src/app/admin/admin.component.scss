@@ -1,0 +1,6 @@
+.open-sidebar {
+	padding-left: calc(
+		1rem + 220px
+	) !important; // adjust based on your sidebar width
+	transition: padding-left 0.1s ease;
+}

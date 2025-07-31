@@ -11,6 +11,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { InputComponent } from './shared/components/input/input.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { FooterComponent } from './shared/components/client/footer/footer.component';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
 	declarations: [
@@ -27,6 +28,7 @@ import { FooterComponent } from './shared/components/client/footer/footer.compon
 		RouterModule,
 		HttpClientModule,
 		AppRoutingModule,
+		SharedModule,
 	],
 	providers: [],
 	bootstrap: [AppComponent],

@@ -1,0 +1,69 @@
+<div class="row">
+	<div class="col-12">
+		<app-admin-header-nav
+			[navs]="navigations"
+		></app-admin-header-nav>
+	</div>
+</div>
+<div class="row" *ngIf="!isLoading">
+	<div class="col-12 mt-2">
+		<div class="d-flex justify-content-end">
+			<button
+				class="btn btn-sm btn-warning me-2"
+				[routerLink]="'update'"
+			>
+				<i class="bi bi-pencil me-2"></i><span>Update</span>
+			</button>
+			<button
+				class="btn btn-sm btn-danger"
+				(click)="delete()"
+			>
+				<i class="bi bi-trash me-2 text-light"></i
+				><span class="text-light">Delete</span>
+			</button>
+		</div>
+		<div class="mb-3">
+			<label class="form-label fw-bold">Name</label>
+			<p class="d-flex align-items-center">
+				<span class="me-2"> {{ role.name }}</span>
+				<app-status-labels
+					[status]="role.status"
+				></app-status-labels>
+			</p>
+			<div class="mb-3">
+				<label class="fs-5">Permissions</label>
+				<div class="row">
+					<div class="col-12">
+						<div
+							*ngFor="let group of permissionGroup"
+							class="mb-3"
+						>
+							<strong>{{ group.name }}</strong>
+							<div *ngFor="let perm of group.permissions">
+								<label
+									class="form-check-label"
+									[for]="perm.id"
+								>
+									<i
+										class="me-2"
+										[class]="
+											isPermissionSelected(perm.id)
+												? 'bi bi-check-square'
+												: 'bi bi-square'
+										"
+									></i
+									>{{ perm.name }}
+								</label>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<app-admin-audit
+	*ngIf="!isLoading"
+	[entity]="role"
+></app-admin-audit>

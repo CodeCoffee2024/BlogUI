@@ -3,7 +3,19 @@ import { RouterModule, Routes } from '@angular/router';
 import { AdminComponent } from './admin.component';
 
 const routes: Routes = [
-	{ path: '', component: AdminComponent },
+	{
+		path: '',
+		component: AdminComponent,
+		children: [
+			{
+				path: 'roles',
+				loadChildren: () =>
+					import('./role/role.module').then(
+						(m) => m.RoleModule
+					),
+			},
+		],
+	},
 ];
 
 @NgModule({

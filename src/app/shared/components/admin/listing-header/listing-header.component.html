@@ -1,0 +1,52 @@
+<form [formGroup]="searchForm" class="mt-2">
+	<div class="input-group mb-3">
+		<div class="input-group-append">
+			<span class="input-group-text">
+				<i class="bi fs-sm bi-search"></i>
+			</span>
+		</div>
+		<input
+			type="text"
+			class="form-control form-control-sm"
+			[placeholder]="searchPlaceHolder"
+			formControlName="search"
+		/>
+	</div>
+</form>
+<div class="row">
+	<div class="col-lg-2" [class.d-none]="!hasStatus">
+		<div class="mb-3">
+			<label for="status" class="form-label">Status</label>
+			<select
+				id="status"
+				name="status"
+				class="form-select"
+				[(ngModel)]="selectedStatus"
+				(ngModelChange)="onStatusChange()"
+			>
+				<option
+					*ngFor="let status of statuses"
+					[value]="status.name"
+				>
+					{{ status.description }}
+				</option>
+			</select>
+		</div>
+	</div>
+	<div
+		[class]="hasStatus ? 'col-lg-10' : 'col-lg-12'"
+		class="d-flex justify-content-end align-items-center"
+	>
+		<div class="col-12 col-lg-auto mb-2 mb-lg-0">
+			<button
+				class="btn btn-success w-100 btn-sm"
+				*ngIf="hasAddBtn"
+				(click)="addBtnClick()"
+				[routerLink]="'new'"
+			>
+				<i class="bi bi-plus me-2 text-white"></i>New
+				{{ entityName }}
+			</button>
+		</div>
+	</div>
+</div>

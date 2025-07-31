@@ -1,0 +1,24 @@
+<div class="row">
+	<div class="col-12 col-lg-6">
+		<div>
+			<span class="fw-bold me-2">Created By:</span
+			>{{ createdBy }}
+		</div>
+		<div>
+			<span class="fw-bold me-2">Created On:</span
+			>{{ entity.createdOn | date : 'Y-MM-d' }}
+		</div>
+	</div>
+	<div class="col-12 col-lg-6 d-flex justify-content-end">
+		<div>
+			<div>
+				<span class="fw-bold me-2">Updated By:</span
+				>{{ updatedBy }}
+			</div>
+			<div>
+				<span class="fw-bold me-2">Updated On:</span
+				>{{ entity.updatedOn | date : 'Y-MM-d' }}
+			</div>
+		</div>
+	</div>
+</div>

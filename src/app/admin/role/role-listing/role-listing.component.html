@@ -1,0 +1,74 @@
+<ng-container>
+	<div class="row">
+		<div class="col-12">
+			<p class="fs-3">Roles</p>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-12">
+			<app-admin-header-nav
+				[navs]="navigations"
+			></app-admin-header-nav>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-12">
+			<app-listing-header
+				[hasSearch]="true"
+				[hasAddBtn]="true"
+				[hasStatus]="true"
+				[entityName]="'Role'"
+				[selectedStatus]="listingOption.status"
+				[statuses]="statuses"
+				(statusChangeResult)="statusChange($event)"
+				(searchResult)="searchChange($event)"
+			></app-listing-header>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-12">
+			<div class="table-responsive" *ngIf="!isLoading">
+				<table
+					class="table table-bordered table-hover align-middle"
+				>
+					<thead class="table-light">
+						<tr>
+							<th>#</th>
+							<th>Name</th>
+						</tr>
+					</thead>
+					<tbody *ngIf="list">
+						<tr
+							*ngFor="
+								let item of list.items[0];
+								let i = index
+							"
+							[routerLink]="item.id"
+						>
+							<td>{{ i + 1 }}</td>
+							<td class="d-flex">
+								<span class="me-2">{{ item.name }}</span>
+								<app-status-labels
+									[status]="item.status"
+								></app-status-labels>
+							</td>
+						</tr>
+						<tr *ngIf="list.items[0].length === 0">
+							<td
+								colspan="4"
+								class="text-center text-muted"
+							>
+								No records found.
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<app-listing-pagination
+				*ngIf="!isLoading"
+				[listingData]="listingData"
+				(changePage)="onPageChange($event)"
+			></app-listing-pagination>
+		</div>
+	</div>
+</ng-container>
