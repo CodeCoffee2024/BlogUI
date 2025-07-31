@@ -14,7 +14,6 @@ export class GenericService {
 	private baseUrl = environment.apiUrl;
 	constructor(private http: HttpClient) {}
 
-	// Generic GET request
 	protected get<T>(
 		endpoint: string,
 		params?: HttpParams,
@@ -39,7 +38,7 @@ export class GenericService {
 					)}`
 			)
 			.join('&');
-	} // Generic GET request for file downloads
+	}
 	getFile(
 		endpoint: string,
 		params?: HttpParams,
@@ -62,7 +61,6 @@ export class GenericService {
 		});
 	}
 
-	// Generic POST request
 	protected post<T>(
 		endpoint: string,
 		payload,
@@ -75,7 +73,6 @@ export class GenericService {
 		);
 	}
 
-	// Generic PUT request
 	protected put<T>(
 		endpoint: string,
 		payload,
@@ -88,7 +85,6 @@ export class GenericService {
 		);
 	}
 
-	// Generic DELETE request
 	protected delete<T>(
 		endpoint: string,
 		params?: HttpParams

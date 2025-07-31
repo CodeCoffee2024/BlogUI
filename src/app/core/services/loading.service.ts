@@ -20,6 +20,6 @@ export class LoadingService {
 		this.loadingSubject.next(false);
 	}
 	isLoading(): boolean {
-		return this.loadingSubject.value; // ✅ Return current state
+		return this.loadingSubject.value;
 	}
 }

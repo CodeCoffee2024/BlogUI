@@ -35,9 +35,7 @@
 }
 
 .open-sidebar {
-	padding-left: calc(
-		1rem + 250px
-	) !important; // adjust based on your sidebar width
+	padding-left: calc(1rem + 250px) !important;
 	transition: padding-left 0.1s ease;
 }
 .dropdown-menu.show {

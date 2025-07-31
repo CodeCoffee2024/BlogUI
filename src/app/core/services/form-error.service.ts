@@ -53,12 +53,11 @@ export class FormErrorService {
 			control?.markAsDirty({ onlySelf: true });
 
 			if (control instanceof FormGroup) {
-				this.markFormGroupDirty(control); // recurse for nested FormGroups
+				this.markFormGroupDirty(control);
 			}
 		});
 	}
 	clearServerErrorOnChange(form: FormGroup): void {
-		// Clear form-level server error
 		if (form.errors && form.errors['serverError']) {
 			const { serverError, ...rest } = form.errors;
 			form.setErrors(
@@ -66,7 +65,6 @@ export class FormErrorService {
 			);
 		}
 
-		// Clear control-level server errors
 		Object.keys(form.controls).forEach((key) => {
 			const control = form.get(key);
 			if (
@@ -80,7 +78,6 @@ export class FormErrorService {
 				);
 			}
 
-			// Recurse into nested FormGroups
 			if (control instanceof FormGroup) {
 				this.clearServerErrorOnChange(control);
 			}

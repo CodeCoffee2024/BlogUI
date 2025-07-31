@@ -19,7 +19,6 @@ import { Router } from '@angular/router';
 export class AdminSidebarComponent implements OnInit {
 	@Input() isSidebarOpen = false;
 	@Input() isDesktop = false;
-	// ModuleList = Modules;
 	modules: ModuleGroupDto[];
 	isLoading = true;
 	@Output() closeSidebar = new EventEmitter<void>();
@@ -28,25 +27,7 @@ export class AdminSidebarComponent implements OnInit {
 		private loadingService: LoadingService,
 		private route: Router
 	) {}
-	// get Modules(): string[] {
-	//   return Modules
-	//     .filter(module => this.getNavigations(module.name).length > 0) // Only modules with enabled navigations
-	//     .map(module => module.name);
-	// }
 
-	// getNavigations(module: string): SideBarNavigation[] {
-	//   return Navigations
-	//       .filter(nav => nav.module === module) // Filter navigations by module
-	//       .map(nav => new SideBarNavigation(
-	//           nav.name,
-	//           nav.description,
-	//           this.permissionService.hasPermissions(nav.requiredPermission || []), // Ensure it handles undefined permissions
-	//           nav.icon,
-	//           nav.name,
-	//           nav.route
-	//       ))
-	//       .filter(nav => nav.enabled); // Return only enabled items
-	// }
 	ngOnInit(): void {
 		this.systemService
 			.getModuleGroups()
@@ -61,9 +42,7 @@ export class AdminSidebarComponent implements OnInit {
 					this.modules = res.data;
 					console.log(res);
 				},
-				error: () => {
-					// this.toastService.error('Failed to load post.');
-				},
+				error: () => {},
 			});
 	}
 	onClose(): void {

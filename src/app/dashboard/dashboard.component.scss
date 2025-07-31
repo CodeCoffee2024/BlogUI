@@ -1,34 +1,36 @@
 .carousel-indicators [data-bs-target] {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%; // Makes it elliptical
-  background-color: #000; // or any custom color
-  opacity: 0.5;
-  transition: opacity 0.3s ease;
-  margin: 0 5px;
+	width: 10px;
+	height: 10px;
+	border-radius: 50%;
+	background-color: #000;
+	opacity: 0.5;
+	transition: opacity 0.3s ease;
+	margin: 0 5px;
 }
 .carousel-indicators {
-  top: 100%;
+	top: 100%;
 }
 .carousel-indicators .active {
-  opacity: 1;
-  background-color: #333; // active color
+	opacity: 1;
+	background-color: #333;
 }
 
 .top-4-img {
-  width: 100px !important;
-  height: 100px !important;
+	width: 100px !important;
+	height: 100px !important;
 }
-.top-2-img, .highlight-img
-{
-  object-fit: cover; 
-  object-position: center; 
-  z-index: 0;
+.top-2-img,
+.highlight-img {
+	object-fit: cover;
+	object-position: center;
+	z-index: 0;
 }
 .top-2-img {
-  filter: brightness(0.4);
+	filter: brightness(0.4);
 }
-.top-2-category, .highlight-category, .latest-category {
-  background-color: rgba(0,0,0,.3) !important;
-  color: white;
+.top-2-category,
+.highlight-category,
+.latest-category {
+	background-color: rgba(0, 0, 0, 0.3) !important;
+	color: white;
 }
