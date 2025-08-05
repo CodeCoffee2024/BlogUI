@@ -1,0 +1,66 @@
+<div class="row">
+	<div class="col-12">
+		<app-admin-header-nav
+			[navs]="navigations"
+		></app-admin-header-nav>
+	</div>
+</div>
+<div class="row" *ngIf="!isLoading">
+	<div class="col-12 mt-2">
+		<div class="d-flex justify-content-end">
+			<button
+				class="btn btn-sm btn-warning me-2"
+				[routerLink]="'update'"
+			>
+				<i class="bi bi-pencil me-2"></i><span>Update</span>
+			</button>
+			<button
+				class="btn btn-sm btn-danger"
+				(click)="delete()"
+			>
+				<i class="bi bi-trash me-2 text-light"></i
+				><span class="text-light">Delete</span>
+			</button>
+		</div>
+		<div class="mb-3">
+			<label class="form-label fw-bold">Last Name</label>
+			<p class="d-flex align-items-center">
+				<span class="me-2"> {{ user.lastName }}</span>
+				<app-status-labels
+					[status]="user.status"
+				></app-status-labels>
+			</p>
+		</div>
+		<div class="mb-3">
+			<label class="form-label fw-bold">First Name</label>
+			<p class="d-flex align-items-center">
+				<span class="me-2"> {{ user.firstName }}</span>
+			</p>
+		</div>
+		<div class="mb-3">
+			<label class="form-label fw-bold">Middle Name</label>
+			<p class="d-flex align-items-center">
+				<span class="me-2">
+					{{ user.middleName | nullable }}</span
+				>
+			</p>
+		</div>
+		<div class="mb-3">
+			<label class="form-label fw-bold">Username</label>
+			<p class="d-flex align-items-center">
+				<span class="me-2"> {{ user.userName }}</span>
+			</p>
+		</div>
+		<div class="mb-3">
+			<label class="form-label fw-bold">Email</label>
+			<p class="d-flex align-items-center">
+				<span class="me-2"> {{ user.email }}</span>
+			</p>
+		</div>
+	</div>
+</div>
+
+<app-admin-audit
+	*ngIf="!isLoading"
+	[entity]="user"
+></app-admin-audit>

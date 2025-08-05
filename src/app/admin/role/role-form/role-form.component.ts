@@ -5,7 +5,7 @@ import {
 	OnInit,
 	Output,
 } from '@angular/core';
-import { RoleForm } from '../models/role';
+import { RoleConstants, RoleForm } from '../models/role';
 import {
 	PermissionData,
 	PermissionUtil,
@@ -87,6 +87,11 @@ export class RoleFormComponent {
 			.subscribe({
 				next: (res) => {
 					this.resultId.emit(res.role.data.id);
+					this.toastService.success(
+						this.isNew
+							? RoleConstants.CREATESUCCESS
+							: RoleConstants.UPDATESUCCESS
+					);
 				},
 				error: (error) => {
 					const errors = error?.error?.errors;

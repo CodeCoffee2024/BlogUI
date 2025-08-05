@@ -34,6 +34,10 @@
 	cursor: pointer;
 }
 
+.cursor-pointer {
+	cursor: pointer;
+}
+
 .hover-text::after {
 	content: '';
 	position: absolute;

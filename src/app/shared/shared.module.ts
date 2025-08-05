@@ -19,6 +19,7 @@ import { StatusLabelsComponent } from './components/status-labels/status-labels.
 import { ListingPaginationComponent } from './components/admin/listing-pagination/listing-pagination.component';
 import { AdminAuditComponent } from './components/admin/admin-audit/admin-audit.component';
 import { AdminNotificationComponent } from './components/admin/admin-notification/admin-notification.component';
+import { NullablePipe } from './pipes/nullable.pipe';
 
 @NgModule({
 	declarations: [
@@ -36,6 +37,7 @@ import { AdminNotificationComponent } from './components/admin/admin-notificatio
 		ListingPaginationComponent,
 		AdminAuditComponent,
 		AdminNotificationComponent,
+		NullablePipe,
 	],
 	imports: [
 		CommonModule,
@@ -61,6 +63,7 @@ import { AdminNotificationComponent } from './components/admin/admin-notificatio
 		ListingPaginationComponent,
 		AdminAuditComponent,
 		AdminNotificationComponent,
+		NullablePipe,
 	],
 })
 export class SharedModule {}

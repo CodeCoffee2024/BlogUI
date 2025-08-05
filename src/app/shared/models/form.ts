@@ -20,7 +20,6 @@ export abstract class FormModel {
 		const control = this.form.get(controlName);
 		if (!control || !control.errors || !control.dirty)
 			return [];
-
 		return Object.keys(control.errors).map((errorKey) => {
 			switch (errorKey) {
 				case 'required':

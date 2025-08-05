@@ -1,0 +1,120 @@
+<form [formGroup]="form.form" (ngSubmit)="onSubmit()">
+	<div class="mb-3">
+		<label>Last Name</label>
+		<input
+			type="text"
+			class="form-control"
+			formControlName="lastName"
+		/>
+		<div
+			class="text-danger"
+			*ngFor="
+				let error of form.getControlErrors('lastName')
+			"
+		>
+			{{ error }}
+		</div>
+	</div>
+	<div class="mb-3">
+		<label>First Name</label>
+		<input
+			type="text"
+			class="form-control"
+			formControlName="firstName"
+		/>
+		<div
+			class="text-danger"
+			*ngFor="
+				let error of form.getControlErrors('firstName')
+			"
+		>
+			{{ error }}
+		</div>
+	</div>
+	<div class="mb-3">
+		<label>Middle Name</label>
+		<input
+			type="text"
+			class="form-control"
+			formControlName="middleName"
+		/>
+		<div
+			class="text-danger"
+			*ngFor="
+				let error of form.getControlErrors('middleName')
+			"
+		>
+			{{ error }}
+		</div>
+	</div>
+	<div class="mb-3">
+		<label>Username</label>
+		<input
+			type="text"
+			class="form-control"
+			formControlName="userName"
+		/>
+		<div
+			class="text-danger"
+			*ngFor="
+				let error of form.getControlErrors('userName')
+			"
+		>
+			{{ error }}
+		</div>
+	</div>
+	<div class="mb-3">
+		<label>Email</label>
+		<input
+			type="email"
+			class="form-control"
+			formControlName="email"
+		/>
+		<div
+			class="text-danger"
+			*ngFor="let error of form.getControlErrors('email')"
+		>
+			{{ error }}
+		</div>
+	</div>
+	<ng-container *ngIf="isNew">
+		<div class="mb-3">
+			<label>Password</label>
+			<input
+				type="password"
+				class="form-control"
+				formControlName="password"
+			/>
+			<div
+				class="text-danger"
+				*ngFor="
+					let error of form.getControlErrors('password')
+				"
+			>
+				{{ error }}
+			</div>
+		</div>
+		<div class="mb-3">
+			<label>Repeat Password</label>
+			<input
+				type="password"
+				class="form-control"
+				formControlName="repeatPassword"
+			/>
+			<div
+				class="text-danger"
+				*ngFor="
+					let error of form.getControlErrors(
+						'repeatPassword'
+					)
+				"
+			>
+				{{ error }}
+			</div>
+		</div></ng-container
+	>
+
+	<button type="submit" class="btn btn-success">
+		Save
+	</button>
+</form>

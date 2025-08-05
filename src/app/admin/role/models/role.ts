@@ -19,6 +19,8 @@ export const RoleConstants = {
 	DELETECONFIRMATION:
 		'Are you sure you want to delete this role?',
 	DELETESUCCESS: 'Role deleted successfully',
+	UPDATESUCCESS: 'Role updated successfully',
+	CREATESUCCESS: 'Role created successfully',
 };
 export class RoleForm extends FormModel {
 	private fb: FormBuilder;

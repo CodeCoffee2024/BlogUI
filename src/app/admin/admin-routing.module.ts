@@ -14,6 +14,13 @@ const routes: Routes = [
 						(m) => m.RoleModule
 					),
 			},
+			{
+				path: 'users',
+				loadChildren: () =>
+					import('./user/user.module').then(
+						(m) => m.UserModule
+					),
+			},
 		],
 	},
 ];

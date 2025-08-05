@@ -32,4 +32,5 @@ export const HeaderNav: NavItem[] = [
 ];
 export const AdminHeaderNav: AdminNavItem[] = [
 	{ page: AdminPage.Role, label: 'Role', link: '/roles' },
+	{ page: AdminPage.User, label: 'User', link: '/users' },
 ];
