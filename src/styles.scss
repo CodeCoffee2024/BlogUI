@@ -23,6 +23,19 @@
 	.hover-text::after {
 		background-color: var(--default-text-color);
 	}
+	.form-check-input:checked {
+		background-color: var(--default-text-color) !important;
+		border-color: var(--default-text-color) !important;
+	}
+	.form-check-input,
+	.form-check-input::before {
+		background-color: var(--default-background) !important;
+		border-color: var(--default-text-color) !important;
+	}
+}
+
+.form-check-input:focus {
+	box-shadow: none !important;
 }
 .system-secondary-bg {
 	background-color: var(--default-secondary-text-color);

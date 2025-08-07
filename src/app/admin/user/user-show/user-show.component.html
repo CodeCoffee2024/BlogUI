@@ -5,62 +5,150 @@
 		></app-admin-header-nav>
 	</div>
 </div>
-<div class="row" *ngIf="!isLoading">
-	<div class="col-12 mt-2">
-		<div class="d-flex justify-content-end">
-			<button
-				class="btn btn-sm btn-warning me-2"
-				[routerLink]="'update'"
-			>
-				<i class="bi bi-pencil me-2"></i><span>Update</span>
-			</button>
-			<button
-				class="btn btn-sm btn-danger"
-				(click)="delete()"
-			>
-				<i class="bi bi-trash me-2 text-light"></i
-				><span class="text-light">Delete</span>
-			</button>
+<ul
+	class="nav nav-tabs mt-3"
+	role="tablist"
+	*ngIf="!isLoading"
+>
+	<li class="nav-item" role="presentation">
+		<button
+			class="nav-link active text-dark"
+			id="profile-tab"
+			data-bs-toggle="tab"
+			data-bs-target="#user-info"
+			type="button"
+			role="tab"
+			aria-controls="user-info"
+			aria-selected="true"
+		>
+			User Info
+		</button>
+	</li>
+	<li class="nav-item" role="presentation">
+		<button
+			class="nav-link text-dark"
+			id="roles-tab"
+			data-bs-toggle="tab"
+			data-bs-target="#roles"
+			type="button"
+			role="tab"
+			aria-controls="roles"
+			aria-selected="false"
+		>
+			Roles
+		</button>
+	</li>
+</ul>
+<div class="tab-content pt-3" *ngIf="!isLoading">
+	<div
+		class="tab-pane fade show active"
+		id="user-info"
+		role="tabpanel"
+		aria-labelledby="profile-tab"
+	>
+		<div class="row">
+			<div class="col-12 mt-2">
+				<div class="d-flex justify-content-end">
+					<button
+						class="btn btn-sm btn-warning me-2"
+						[routerLink]="'update'"
+					>
+						<i class="bi bi-pencil me-2"></i
+						><span>Update</span>
+					</button>
+					<button
+						class="btn btn-sm btn-danger"
+						(click)="delete()"
+					>
+						<i class="bi bi-trash me-2 text-light"></i
+						><span class="text-light">Delete</span>
+					</button>
+				</div>
+				<div class="mb-3">
+					<label class="form-label fw-bold"
+						>Last Name</label
+					>
+					<p class="d-flex align-items-center">
+						<span class="me-2"> {{ user.lastName }}</span>
+						<app-status-labels
+							[status]="user.status"
+						></app-status-labels>
+					</p>
+				</div>
+				<div class="mb-3">
+					<label class="form-label fw-bold"
+						>First Name</label
+					>
+					<p class="d-flex align-items-center">
+						<span class="me-2"> {{ user.firstName }}</span>
+					</p>
+				</div>
+				<div class="mb-3">
+					<label class="form-label fw-bold"
+						>Middle Name</label
+					>
+					<p class="d-flex align-items-center">
+						<span class="me-2">
+							{{ user.middleName | nullable }}</span
+						>
+					</p>
+				</div>
+				<div class="mb-3">
+					<label class="form-label fw-bold">Username</label>
+					<p class="d-flex align-items-center">
+						<span class="me-2"> {{ user.userName }}</span>
+					</p>
+				</div>
+				<div class="mb-3">
+					<label class="form-label fw-bold">Email</label>
+					<p class="d-flex align-items-center">
+						<span class="me-2"> {{ user.email }}</span>
+					</p>
+				</div>
+			</div>
 		</div>
-		<div class="mb-3">
-			<label class="form-label fw-bold">Last Name</label>
-			<p class="d-flex align-items-center">
-				<span class="me-2"> {{ user.lastName }}</span>
-				<app-status-labels
-					[status]="user.status"
-				></app-status-labels>
-			</p>
-		</div>
-		<div class="mb-3">
-			<label class="form-label fw-bold">First Name</label>
-			<p class="d-flex align-items-center">
-				<span class="me-2"> {{ user.firstName }}</span>
-			</p>
-		</div>
-		<div class="mb-3">
-			<label class="form-label fw-bold">Middle Name</label>
-			<p class="d-flex align-items-center">
-				<span class="me-2">
-					{{ user.middleName | nullable }}</span
-				>
-			</p>
-		</div>
-		<div class="mb-3">
-			<label class="form-label fw-bold">Username</label>
-			<p class="d-flex align-items-center">
-				<span class="me-2"> {{ user.userName }}</span>
-			</p>
-		</div>
-		<div class="mb-3">
-			<label class="form-label fw-bold">Email</label>
-			<p class="d-flex align-items-center">
-				<span class="me-2"> {{ user.email }}</span>
-			</p>
-		</div>
+
+		<app-admin-audit
+			*ngIf="!isLoading && user.createdBy"
+			[entity]="user"
+		></app-admin-audit>
 	</div>
 </div>
 
-<app-admin-audit
-	*ngIf="!isLoading"
-	[entity]="user"
-></app-admin-audit>
+<div class="tab-content pt-1" *ngIf="!isLoading">
+	<div
+		class="tab-pane fade show"
+		id="roles"
+		role="tabpanel"
+		aria-labelledby="roles"
+	>
+		<div class="row">
+			<div class="col-12">
+				<div class="d-flex justify-content-end">
+					<button
+						class="btn btn-sm btn-warning me-2"
+						[routerLink]="'update-role'"
+					>
+						<i class="bi bi-pencil me-2"></i
+						><span>Update</span>
+					</button>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div
+				class="col-4 d-flex align-items-center"
+				*ngFor="let role of userRoles"
+			>
+				<span class="me-2">{{ role.name }}</span>
+				<i
+					[class]="
+						isUserHaveAccess(role.id)
+							? 'bi fs-3 bi-toggle-on'
+							: 'bi fs-3 bi-toggle-off'
+					"
+				></i>
+			</div>
+		</div>
+	</div>
+</div>

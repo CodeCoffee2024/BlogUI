@@ -1,0 +1,22 @@
+<div class="row">
+	<div class="col-12">
+		<p class="fs-3">Update User</p>
+	</div>
+</div>
+<div class="row">
+	<div class="col-12">
+		<app-admin-header-nav
+			[navs]="navigations"
+		></app-admin-header-nav>
+	</div>
+</div>
+<div class="row" *ngIf="!isLoading">
+	<div class="col-12 mt-2">
+		<app-user-role-form
+			[form]="form"
+			[roles]="userRoles"
+			[userId]="id"
+			(resultId)="onSubmit($event)"
+		></app-user-role-form>
+	</div>
+</div>

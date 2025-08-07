@@ -9,6 +9,10 @@ import {
 	PermissionDto,
 } from '../../permission/models/permission';
 import { UserFragment } from '../../../dashboard/models/user';
+import {
+	ModuleDto,
+	ModuleFragment,
+} from '../../../shared/dtos/module.dto';
 
 export class RoleDto extends UserFragment {
 	name: string;

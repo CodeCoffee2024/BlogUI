@@ -5,9 +5,9 @@ import {
 	Validators,
 } from '@angular/forms';
 import { FormModel } from '../../../shared/models/form';
-import { first } from 'rxjs';
+import { AuditDto } from '../../../shared/dtos/audit.dto';
 
-export class UserDto {
+export class UserDto extends AuditDto {
 	id: string;
 	lastName: string;
 	firstName: string;

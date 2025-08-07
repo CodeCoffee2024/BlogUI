@@ -8,6 +8,8 @@ import { UserUpdateComponent } from './user-update/user-update.component';
 import { UserShowComponent } from './user-show/user-show.component';
 import { SharedModule } from '../../shared/shared.module';
 import { UserFormComponent } from './user-form/user-form.component';
+import { UserRoleFormComponent } from './user-role-form/user-role-form.component';
+import { UserRoleUpdateComponent } from './user-role-update/user-role-update.component';
 
 @NgModule({
 	declarations: [
@@ -16,6 +18,8 @@ import { UserFormComponent } from './user-form/user-form.component';
 		UserUpdateComponent,
 		UserShowComponent,
 		UserFormComponent,
+  UserRoleFormComponent,
+  UserRoleUpdateComponent,
 	],
 	imports: [CommonModule, UserRoutingModule, SharedModule],
 })

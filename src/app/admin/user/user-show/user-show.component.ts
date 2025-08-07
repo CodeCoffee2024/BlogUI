@@ -17,6 +17,8 @@ import {
 	NotificationType,
 	NotificationTypeTitle,
 } from '../../../shared/models/notification';
+import { RoleService } from '../../role/role.service';
+import { UserRoleDto } from '../models/user-role';
 
 @Component({
 	selector: 'app-user-show',
@@ -28,11 +30,13 @@ export class UserShowComponent implements OnInit {
 	id: string;
 	isLoading = true;
 	user: UserDto = new UserDto();
+	userRoles: UserRoleDto[] = [];
+	currentUserRoles: UserRoleDto[] = [];
 	constructor(
 		private userService: UserService,
 		private loadingService: LoadingService,
 		private toastService: ToastService,
-		private permissionService: PermissionService,
+		private roleService: RoleService,
 		private activatedRoute: ActivatedRoute,
 		private notificationService: NotificationService,
 		private route: Router
@@ -47,6 +51,9 @@ export class UserShowComponent implements OnInit {
 		this.loadingService.show();
 		forkJoin({
 			user: this.userService.getUserById(id),
+			userRoles: this.roleService.getUserRoles(),
+			currentUserRole:
+				this.roleService.getUserRolesByUserId(id),
 		})
 			.pipe(
 				finalize(() => {
@@ -73,6 +80,9 @@ export class UserShowComponent implements OnInit {
 							link: '',
 						},
 					];
+					this.userRoles = res.userRoles.data;
+					console.log(this.userRoles);
+					this.currentUserRoles = res.currentUserRole.data;
 				},
 				error: (error) => {
 					const message =
@@ -104,5 +114,10 @@ export class UserShowComponent implements OnInit {
 						});
 				}
 			});
+	}
+	isUserHaveAccess(roleId) {
+		return this.currentUserRoles.find(
+			(it) => it.id == roleId
+		);
 	}
 }

@@ -12,6 +12,7 @@ import { RoleListingOption } from './role-listing/role.listing.option';
 import { RoleDto } from './models/role';
 import { StatusDto } from '../../shared/dtos/status.dto';
 import { environment } from '../../../../environment';
+import { UserRoleDto } from '../user/models/user-role';
 
 @Injectable({
 	providedIn: 'root',
@@ -29,6 +30,24 @@ export class RoleService extends GenericService {
 			this.setQueryParameters(listingOption);
 		return this.get(
 			`${this.controller}GetRoles?${queryParams}`,
+			null,
+			true
+		);
+	}
+	getUserRoles(): Observable<ApiResult<UserRoleDto[]>> {
+		localStorage.setItem('token', environment.dummyToken);
+		return this.get(
+			`${this.controller}GetUserRoles`,
+			null,
+			true
+		);
+	}
+	getUserRolesByUserId(
+		id
+	): Observable<ApiResult<UserRoleDto[]>> {
+		localStorage.setItem('token', environment.dummyToken);
+		return this.get(
+			`${this.controller}getUserRolesByUserId/${id}`,
 			null,
 			true
 		);
@@ -53,6 +72,17 @@ export class RoleService extends GenericService {
 		localStorage.setItem('token', environment.dummyToken);
 		return this.put(
 			`${this.controller}${id}`,
+			payload,
+			this.getAuthorizationHeader()
+		);
+	}
+	updateUserRole(
+		userId,
+		payload
+	): Observable<ApiResult<RoleDto>> {
+		localStorage.setItem('token', environment.dummyToken);
+		return this.put(
+			`${this.controller}UpdateUserRole/${userId}`,
 			payload,
 			this.getAuthorizationHeader()
 		);
