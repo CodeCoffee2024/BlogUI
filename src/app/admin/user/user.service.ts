@@ -22,7 +22,6 @@ export class UserService extends GenericService {
 	getList(
 		listingOption
 	): Observable<GenericListingResult<UserDto[]>> {
-		localStorage.setItem('token', environment.dummyToken);
 		const queryParams =
 			this.setQueryParameters(listingOption);
 		return this.get(
@@ -32,7 +31,6 @@ export class UserService extends GenericService {
 		);
 	}
 	getStatuses(): Observable<ApiResult<StatusDto[]>> {
-		localStorage.setItem('token', environment.dummyToken);
 		return this.get(
 			`${this.controller}GetStatuses`,
 			null,
@@ -40,7 +38,6 @@ export class UserService extends GenericService {
 		);
 	}
 	create(payload): Observable<ApiResult<UserDto>> {
-		localStorage.setItem('token', environment.dummyToken);
 		return this.post(
 			`${this.controller}`,
 			payload,
@@ -48,7 +45,6 @@ export class UserService extends GenericService {
 		);
 	}
 	update(id, payload): Observable<ApiResult<UserDto>> {
-		localStorage.setItem('token', environment.dummyToken);
 		return this.put(
 			`${this.controller}${id}`,
 			payload,
@@ -56,11 +52,9 @@ export class UserService extends GenericService {
 		);
 	}
 	remove(id): Observable<NullApiResult> {
-		localStorage.setItem('token', environment.dummyToken);
 		return this.delete(`${this.controller}${id}`);
 	}
 	getUserById(id): Observable<ApiResult<UserDto>> {
-		localStorage.setItem('token', environment.dummyToken);
 		return this.get(`${this.controller}${id}`, null, true);
 	}
 }

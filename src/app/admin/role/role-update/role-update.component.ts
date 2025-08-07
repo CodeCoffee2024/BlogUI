@@ -13,6 +13,7 @@ import { ToastService } from '../../../core/services/toast.service';
 import { AdminPage } from '../../../shared/models/page';
 import { finalize, forkJoin } from 'rxjs';
 import { RoleService } from '../role.service';
+import { TitleService } from '../../../core/services/title.service';
 
 @Component({
 	selector: 'app-role-update',
@@ -34,7 +35,8 @@ export class RoleUpdateComponent
 		private loadingService: LoadingService,
 		private route: Router,
 		private toastService: ToastService,
-		private activatedRoute: ActivatedRoute
+		private activatedRoute: ActivatedRoute,
+		private titleService: TitleService
 	) {
 		super();
 	}
@@ -79,6 +81,9 @@ export class RoleUpdateComponent
 							link: '',
 						},
 					];
+					this.titleService.setTitle(
+						'Roles - ' + this.role.name + ' Update'
+					);
 					this.form.fillForm(this.role);
 				},
 				error: (error) => {

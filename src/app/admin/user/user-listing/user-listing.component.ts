@@ -13,6 +13,7 @@ import { LoadingService } from '../../../core/services/loading.service';
 import { ToastService } from '../../../core/services/toast.service';
 import { AdminPage } from '../../../shared/models/page';
 import { finalize, forkJoin } from 'rxjs';
+import { TitleService } from '../../../core/services/title.service';
 
 @Component({
 	selector: 'app-user-listing',
@@ -30,7 +31,8 @@ export class UserListingComponent
 	constructor(
 		private userService: UserService,
 		private loadingService: LoadingService,
-		private toastService: ToastService
+		private toastService: ToastService,
+		private titleService: TitleService
 	) {
 		super();
 		this.listingOption = new UserListingOption();
@@ -62,6 +64,7 @@ export class UserListingComponent
 					this.toastService.error(message);
 				},
 			});
+		this.titleService.setTitle('Users');
 	}
 	statusChange(status: string) {
 		this.listingOption.status = status;

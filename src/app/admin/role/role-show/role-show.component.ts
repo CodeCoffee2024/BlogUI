@@ -22,6 +22,7 @@ import {
 	NotificationType,
 	NotificationTypeTitle,
 } from '../../../shared/models/notification';
+import { TitleService } from '../../../core/services/title.service';
 
 @Component({
 	selector: 'app-role-show',
@@ -41,7 +42,8 @@ export class RoleShowComponent implements OnInit {
 		private permissionService: PermissionService,
 		private activatedRoute: ActivatedRoute,
 		private notificationService: NotificationService,
-		private route: Router
+		private route: Router,
+		private titleService: TitleService
 	) {}
 	ngOnInit(): void {
 		this.activatedRoute.paramMap.subscribe((params) => {
@@ -78,6 +80,9 @@ export class RoleShowComponent implements OnInit {
 							link: '',
 						},
 					];
+					this.titleService.setTitle(
+						'Roles - ' + this.role.name
+					);
 				},
 				error: (error) => {
 					const message =

@@ -11,6 +11,7 @@ import { ToastService } from '../../../core/services/toast.service';
 import { FormErrorService } from '../../../core/services/form-error.service';
 import { AdminPage } from '../../../shared/models/page';
 import { forkJoin } from 'rxjs';
+import { TitleService } from '../../../core/services/title.service';
 
 @Component({
 	selector: 'app-user-new',
@@ -23,7 +24,10 @@ export class UserNewComponent
 {
 	form: UserForm = new UserForm();
 	navigations: AdminNavItem[] = [];
-	constructor(private route: Router) {
+	constructor(
+		private route: Router,
+		private titleService: TitleService
+	) {
 		super();
 		this.navigations = [
 			AdminHeaderNav.find(
@@ -35,6 +39,7 @@ export class UserNewComponent
 				link: '',
 			},
 		];
+		this.titleService.setTitle('Users - New');
 	}
 	ngOnInit(): void {}
 	onSubmit(id) {

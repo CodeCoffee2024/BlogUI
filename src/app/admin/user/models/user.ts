@@ -58,21 +58,11 @@ export class UserForm extends FormModel {
 
 	override fillForm(user: UserDto): void {
 		this.fb = new FormBuilder();
-		this.form = this.fb.group(
-			{
-				lastName: [user.lastName, Validators.required],
-				firstName: [user.firstName, Validators.required],
-				middleName: [user.middleName, Validators.required],
-				userName: [user.userName, Validators.required],
-				email: [user.email, Validators.required],
-			},
-			{
-				validators: this.mustMatchValidator(
-					'password',
-					'repeatPassword'
-				),
-			}
-		);
+		this.form = this.fb.group({
+			lastName: [user.lastName, Validators.required],
+			firstName: [user.firstName, Validators.required],
+			middleName: [user.middleName, Validators.required],
+		});
 	}
 
 	private mustMatchValidator(

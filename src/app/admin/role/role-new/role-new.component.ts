@@ -17,6 +17,7 @@ import { ToastService } from '../../../core/services/toast.service';
 import { RoleService } from '../role.service';
 import { FormErrorService } from '../../../core/services/form-error.service';
 import { Router } from '@angular/router';
+import { TitleService } from '../../../core/services/title.service';
 
 @Component({
 	selector: 'app-role-new',
@@ -35,7 +36,7 @@ export class RoleNewComponent
 		private loadingService: LoadingService,
 		private route: Router,
 		private toastService: ToastService,
-		private formErrorService: FormErrorService
+		private titleService: TitleService
 	) {
 		super();
 		this.navigations = [
@@ -48,6 +49,7 @@ export class RoleNewComponent
 				link: '',
 			},
 		];
+		this.titleService.setTitle('Roles - New');
 	}
 	ngOnInit(): void {
 		this.loadingService.show();

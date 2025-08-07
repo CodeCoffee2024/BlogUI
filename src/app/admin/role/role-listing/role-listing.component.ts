@@ -22,6 +22,7 @@ import {
 	StatusDto,
 } from '../../../shared/dtos/status.dto';
 import { Router } from '@angular/router';
+import { TitleService } from '../../../core/services/title.service';
 
 @Component({
 	selector: 'app-role-listing',
@@ -40,7 +41,7 @@ export class RoleListingComponent
 		private roleService: RoleService,
 		private loadingService: LoadingService,
 		private toastService: ToastService,
-		private router: Router
+		private titleService: TitleService
 	) {
 		super();
 		this.listingOption = new RoleListingOption();
@@ -102,7 +103,7 @@ export class RoleListingComponent
 				next: (res) => {
 					this.list = res.list.data;
 					this.listingData = res.list.data;
-					console.log(this.listingData);
+					this.titleService.setTitle('Roles');
 				},
 				error: (error) => {
 					const message =

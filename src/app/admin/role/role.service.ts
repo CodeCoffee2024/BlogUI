@@ -25,7 +25,6 @@ export class RoleService extends GenericService {
 	getList(
 		listingOption
 	): Observable<GenericListingResult<RoleDto[]>> {
-		localStorage.setItem('token', environment.dummyToken);
 		const queryParams =
 			this.setQueryParameters(listingOption);
 		return this.get(
@@ -35,7 +34,6 @@ export class RoleService extends GenericService {
 		);
 	}
 	getUserRoles(): Observable<ApiResult<UserRoleDto[]>> {
-		localStorage.setItem('token', environment.dummyToken);
 		return this.get(
 			`${this.controller}GetUserRoles`,
 			null,
@@ -45,7 +43,6 @@ export class RoleService extends GenericService {
 	getUserRolesByUserId(
 		id
 	): Observable<ApiResult<UserRoleDto[]>> {
-		localStorage.setItem('token', environment.dummyToken);
 		return this.get(
 			`${this.controller}getUserRolesByUserId/${id}`,
 			null,
@@ -53,7 +50,6 @@ export class RoleService extends GenericService {
 		);
 	}
 	getStatuses(): Observable<ApiResult<StatusDto[]>> {
-		localStorage.setItem('token', environment.dummyToken);
 		return this.get(
 			`${this.controller}GetStatuses`,
 			null,
@@ -61,7 +57,6 @@ export class RoleService extends GenericService {
 		);
 	}
 	create(payload): Observable<ApiResult<RoleDto>> {
-		localStorage.setItem('token', environment.dummyToken);
 		return this.post(
 			`${this.controller}`,
 			payload,
@@ -69,7 +64,6 @@ export class RoleService extends GenericService {
 		);
 	}
 	update(id, payload): Observable<ApiResult<RoleDto>> {
-		localStorage.setItem('token', environment.dummyToken);
 		return this.put(
 			`${this.controller}${id}`,
 			payload,
@@ -80,7 +74,6 @@ export class RoleService extends GenericService {
 		userId,
 		payload
 	): Observable<ApiResult<RoleDto>> {
-		localStorage.setItem('token', environment.dummyToken);
 		return this.put(
 			`${this.controller}UpdateUserRole/${userId}`,
 			payload,
@@ -88,11 +81,9 @@ export class RoleService extends GenericService {
 		);
 	}
 	remove(id): Observable<NullApiResult> {
-		localStorage.setItem('token', environment.dummyToken);
 		return this.delete(`${this.controller}${id}`);
 	}
 	getRoleById(id): Observable<ApiResult<RoleDto>> {
-		localStorage.setItem('token', environment.dummyToken);
 		return this.get(`${this.controller}${id}`, null, true);
 	}
 }

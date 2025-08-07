@@ -19,6 +19,7 @@ import {
 } from '../../../shared/models/notification';
 import { RoleService } from '../../role/role.service';
 import { UserRoleDto } from '../models/user-role';
+import { TitleService } from '../../../core/services/title.service';
 
 @Component({
 	selector: 'app-user-show',
@@ -39,7 +40,8 @@ export class UserShowComponent implements OnInit {
 		private roleService: RoleService,
 		private activatedRoute: ActivatedRoute,
 		private notificationService: NotificationService,
-		private route: Router
+		private route: Router,
+		private titleService: TitleService
 	) {}
 	ngOnInit(): void {
 		this.activatedRoute.paramMap.subscribe((params) => {
@@ -81,7 +83,12 @@ export class UserShowComponent implements OnInit {
 						},
 					];
 					this.userRoles = res.userRoles.data;
-					console.log(this.userRoles);
+					this.titleService.setTitle(
+						'Users - ' +
+							this.user.lastName +
+							' ' +
+							this.user.lastName
+					);
 					this.currentUserRoles = res.currentUserRole.data;
 				},
 				error: (error) => {

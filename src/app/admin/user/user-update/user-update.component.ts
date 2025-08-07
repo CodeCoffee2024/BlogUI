@@ -11,6 +11,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ToastService } from '../../../core/services/toast.service';
 import { finalize, forkJoin } from 'rxjs';
 import { AdminPage } from '../../../shared/models/page';
+import { TitleService } from '../../../core/services/title.service';
 
 @Component({
 	selector: 'app-user-update',
@@ -30,7 +31,8 @@ export class UserUpdateComponent
 		private loadingService: LoadingService,
 		private route: Router,
 		private toastService: ToastService,
-		private activatedRoute: ActivatedRoute
+		private activatedRoute: ActivatedRoute,
+		private titleService: TitleService
 	) {
 		super();
 	}
@@ -76,6 +78,13 @@ export class UserUpdateComponent
 							link: '',
 						},
 					];
+					this.titleService.setTitle(
+						'Users - ' +
+							this.user.lastName +
+							' ' +
+							this.user.lastName +
+							' Update'
+					);
 					this.form.fillForm(this.user);
 				},
 				error: (error) => {

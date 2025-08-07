@@ -25,7 +25,6 @@ export class PermissionService extends GenericService {
 	getAllPermissions(): Observable<
 		ApiResult<PermissionData[]>
 	> {
-		localStorage.setItem('token', environment.dummyToken);
 		return this.get(`${this.controller}GetAll`, null, true);
 	}
 }
