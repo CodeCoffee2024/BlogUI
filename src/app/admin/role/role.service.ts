@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { GenericService } from '../../core/services/generic.service';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import {
 	ApiResult,
 	GenericListingResult,
@@ -13,6 +13,7 @@ import { RoleDto } from './models/role';
 import { StatusDto } from '../../shared/dtos/status.dto';
 import { environment } from '../../../../environment';
 import { UserRoleDto } from '../user/models/user-role';
+import { mapItemsToGenericListing } from '../../core/generics/listing-result.mapper.ts';
 
 @Injectable({
 	providedIn: 'root',
@@ -27,10 +28,15 @@ export class RoleService extends GenericService {
 	): Observable<GenericListingResult<RoleDto[]>> {
 		const queryParams =
 			this.setQueryParameters(listingOption);
-		return this.get(
+
+		return this.get<any>(
 			`${this.controller}GetRoles?${queryParams}`,
 			null,
 			true
+		).pipe(
+			map((res) =>
+				mapItemsToGenericListing<RoleDto[]>(res.data)
+			)
 		);
 	}
 	getUserRoles(): Observable<ApiResult<UserRoleDto[]>> {

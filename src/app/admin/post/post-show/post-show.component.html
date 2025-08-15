@@ -1,0 +1,66 @@
+<div class="row">
+	<div class="col-12">
+		<app-admin-header-nav
+			[navs]="navigations"
+		></app-admin-header-nav>
+	</div>
+</div>
+<div class="row" *ngIf="!isLoading">
+	<div class="col-12 mt-2">
+		<div class="d-flex justify-content-end">
+			<button
+				class="btn btn-sm btn-warning me-2"
+				[routerLink]="'update'"
+			>
+				<i class="bi bi-pencil me-2"></i><span>Update</span>
+			</button>
+			<button
+				class="btn btn-sm btn-danger"
+				(click)="delete()"
+			>
+				<i class="bi bi-trash me-2 text-light"></i
+				><span class="text-light">Delete</span>
+			</button>
+		</div>
+		<div class="mb-3">
+			<label class="form-label fw-bold">Title</label>
+			<p class="d-flex align-items-center">
+				<span class="me-2"> {{ post.title }}</span>
+				<app-status-labels
+					[status]="post.status"
+				></app-status-labels>
+			</p>
+		</div>
+		<div class="mb-3">
+			<label class="form-label fw-bold">Post Image</label>
+			<div class="img">
+				<img
+					[src]="imgPath + post.imgPath"
+					width="300"
+					height="300"
+				/>
+			</div>
+		</div>
+		<div class="mb-3">
+			<label class="form-label fw-bold">Description</label>
+			<p class="d-flex align-items-center">
+				<span> {{ post.description }}</span>
+			</p>
+		</div>
+		<div class="mb-3">
+			<label class="form-label fw-bold">Tags</label>
+			<div class="row">
+				<div class="col-12 d-flex">
+					<div *ngFor="let tag of post.tags" class="m-2">
+						<span class="tag">{{ tag.name }}</span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<app-admin-audit
+	*ngIf="!isLoading"
+	[entity]="post"
+></app-admin-audit>

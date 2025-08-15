@@ -6,7 +6,6 @@ import {
 	AdminNavItem,
 } from '../../../shared/models/nav.config';
 import { UserDto } from '../models/user';
-import { ListingData } from '../../../shared/models/api-result.model';
 import { StatusDto } from '../../../shared/dtos/status.dto';
 import { UserService } from '../user.service';
 import { LoadingService } from '../../../core/services/loading.service';
@@ -25,7 +24,7 @@ export class UserListingComponent
 	implements OnInit
 {
 	navigations: AdminNavItem[] = [];
-	list: ListingData<UserDto[]>;
+	list: UserDto[];
 	listingData;
 	statuses: StatusDto[];
 	constructor(
@@ -75,7 +74,7 @@ export class UserListingComponent
 		this.reload();
 	}
 	onPageChange(page) {
-		this.listingOption.page = page;
+		this.listingOption.pageNumber = page;
 		this.reload();
 	}
 
@@ -94,7 +93,8 @@ export class UserListingComponent
 			.subscribe({
 				next: (res) => {
 					this.list = res.list.data;
-					this.listingData = res.list.data;
+					console.log(res.list);
+					this.listingData = res.list;
 				},
 				error: (error) => {
 					const message =

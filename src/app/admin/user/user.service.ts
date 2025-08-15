@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { GenericService } from '../../core/services/generic.service';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import {
 	ApiResult,
 	GenericListingResult,
@@ -10,6 +10,7 @@ import {
 import { UserDto } from './models/user';
 import { environment } from '../../../../environment';
 import { StatusDto } from '../../shared/dtos/status.dto';
+import { mapItemsToGenericListing } from '../../core/generics/listing-result.mapper.ts';
 
 @Injectable({
 	providedIn: 'root',
@@ -24,10 +25,15 @@ export class UserService extends GenericService {
 	): Observable<GenericListingResult<UserDto[]>> {
 		const queryParams =
 			this.setQueryParameters(listingOption);
-		return this.get(
+
+		return this.get<any>(
 			`${this.controller}GetUsers?${queryParams}`,
 			null,
 			true
+		).pipe(
+			map((res) =>
+				mapItemsToGenericListing<UserDto[]>(res.data)
+			)
 		);
 	}
 	getStatuses(): Observable<ApiResult<StatusDto[]>> {

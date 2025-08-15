@@ -1,0 +1,25 @@
+<div class="row">
+	<div class="col-12">
+		<app-admin-header-nav
+			[navs]="navigations"
+		></app-admin-header-nav>
+	</div>
+</div>
+<div class="row" *ngIf="!isLoading">
+	<div class="col-12 mt-2">
+		<div class="mb-3">
+			<label class="form-label fw-bold">Name</label>
+			<p class="d-flex align-items-center">
+				<span class="me-2"> {{ category.name }}</span>
+				<app-status-labels
+					[status]="category.status"
+				></app-status-labels>
+			</p>
+		</div>
+	</div>
+</div>
+
+<app-admin-audit
+	*ngIf="!isLoading"
+	[entity]="category"
+></app-admin-audit>

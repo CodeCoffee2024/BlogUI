@@ -53,7 +53,7 @@ export class AuthService extends GenericService {
 			);
 
 		return this.post<ApiResult<AuthResponse>>(
-			`${this.controller}refresh`,
+			`${this.controller}refresh/${refreshToken}`,
 			{ refreshToken }
 		).pipe(
 			tap((result) => {

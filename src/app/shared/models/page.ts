@@ -13,6 +13,7 @@ export enum AdminPage {
 	About = 'about',
 	Contact = 'contact Us',
 	Role = 'roles',
+	Post = 'posts',
 	User = 'users',
 	None = '',
 }

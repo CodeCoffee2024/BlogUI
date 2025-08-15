@@ -75,11 +75,13 @@ export class LoginComponent {
 					const message =
 						error?.error?.error?.description ??
 						'Login failed';
-					this.toastService.error('Error');
-					this.formErrorService.setServerErrors(
-						this.form,
-						error?.error?.errors ?? []
+					this.toastService.error(
+						'Error',
+						'Something went wrong.'
 					);
+					this.formErrorService.setServerErrors(this.form, [
+						error?.error?.error,
+					]);
 				},
 			});
 	}

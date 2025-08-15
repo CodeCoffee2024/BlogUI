@@ -1,15 +1,18 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
-import { AppComponent } from './app.component';
-import { LoginComponent } from './auth/login/login.component';
+import { CommonModule } from '@angular/common';
+import {
+	HTTP_INTERCEPTORS,
+	HttpClientModule,
+} from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
-import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
-import { InputComponent } from './shared/components/input/input.component';
+import { AppComponent } from './app.component';
+import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
+import { AuthInterceptor } from './core/auth.interceptor';
 import { FooterComponent } from './shared/components/client/footer/footer.component';
 import { SharedModule } from './shared/shared.module';
 
@@ -17,7 +20,6 @@ import { SharedModule } from './shared/shared.module';
 	declarations: [
 		AppComponent,
 		LoginComponent,
-		InputComponent,
 		RegisterComponent,
 		FooterComponent,
 	],
@@ -30,7 +32,14 @@ import { SharedModule } from './shared/shared.module';
 		AppRoutingModule,
 		SharedModule,
 	],
-	providers: [],
+	providers: [
+		// { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+		{
+			provide: HTTP_INTERCEPTORS,
+			useClass: AuthInterceptor,
+			multi: true,
+		},
+	],
 	bootstrap: [AppComponent],
 })
 export class AppModule {}

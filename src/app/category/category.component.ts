@@ -87,7 +87,7 @@ export class CategoryComponent implements OnInit {
 			.pipe(finalize(() => this.loadingService.hide()))
 			.subscribe({
 				next: (res) => {
-					this.posts = (res.data?.items || []).flat() ?? [];
+					this.posts = (res.data || []).flat() ?? [];
 					this.listingData = res.data;
 					this.totalCount = res.data['totalCount'];
 				},

@@ -1,25 +1,24 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { finalize, forkJoin } from 'rxjs';
+import { LoadingService } from '../../../core/services/loading.service';
+import { NotificationService } from '../../../core/services/notification.service';
+import { TitleService } from '../../../core/services/title.service';
+import { ToastService } from '../../../core/services/toast.service';
 import {
 	AdminHeaderNav,
 	AdminNavItem,
 } from '../../../shared/models/nav.config';
-import { UserConstants, UserDto } from '../models/user';
-import { UserService } from '../user.service';
-import { LoadingService } from '../../../core/services/loading.service';
-import { ToastService } from '../../../core/services/toast.service';
-import { PermissionService } from '../../permission/permission.service';
-import { ActivatedRoute, Router } from '@angular/router';
-import { NotificationService } from '../../../core/services/notification.service';
-import { finalize, forkJoin } from 'rxjs';
-import { AdminPage } from '../../../shared/models/page';
-import { ToastType } from '../../../shared/models/toast';
 import {
 	NotificationType,
 	NotificationTypeTitle,
 } from '../../../shared/models/notification';
+import { AdminPage } from '../../../shared/models/page';
+import { ToastType } from '../../../shared/models/toast';
 import { RoleService } from '../../role/role.service';
+import { UserConstants, UserDto } from '../models/user';
 import { UserRoleDto } from '../models/user-role';
-import { TitleService } from '../../../core/services/title.service';
+import { UserService } from '../user.service';
 
 @Component({
 	selector: 'app-user-show',
@@ -94,8 +93,11 @@ export class UserShowComponent implements OnInit {
 				error: (error) => {
 					const message =
 						error?.error?.error?.description ??
-						'Failed to load post data';
+						'Failed to load user data';
 					this.toastService.error(message);
+					if (error.status == 404) {
+						this.route.navigate(['admin/users']);
+					}
 				},
 			});
 	}

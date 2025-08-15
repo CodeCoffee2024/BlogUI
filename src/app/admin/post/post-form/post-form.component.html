@@ -1,0 +1,57 @@
+<form [formGroup]="form.form" (ngSubmit)="onSubmit()">
+	<div class="mb-3">
+		<app-input
+			[inputType]="InputTypes.Text"
+			inputId="title"
+			[formGroup]="form.form"
+			[controlName]="'title'"
+			[label]="'Title'"
+		></app-input>
+	</div>
+	<div class="mb-3">
+		<label>Post Image</label>
+		<app-image-upload
+			[image]="form.form.get('Img')?.value"
+			(imageUploaded)="onImageUploaded($event)"
+		></app-image-upload>
+	</div>
+	<app-admin-solo-select-dropdown
+		[label]="'Product Category'"
+		[placeholder]="'Search categories...'"
+		[searchOptions]="categories"
+		[hasSearchIcon]="true"
+		[formGroup]="form.form"
+		[errorName]="'Category'"
+		[controlName]="'categoryId'"
+		[hasMore]="hasMore"
+		[selectedItem]="form.form.get('category')?.value"
+		[field]="'name'"
+		[isLoading]="isDropdownLoading"
+		(searchChanged)="onSearchChanged($event)"
+		(selectedItemChange)="onSelectionChange($event)"
+	>
+	</app-admin-solo-select-dropdown>
+	<div class="mb-3 mt-3">
+		<label>Description</label>
+		<textarea
+			type="text"
+			class="form-control textarea"
+			formControlName="description"
+		></textarea>
+		<div
+			class="text-danger"
+			*ngFor="
+				let error of form.getControlErrors('description')
+			"
+		>
+			{{ error }}
+		</div>
+	</div>
+	<div class="mb-3">
+		<label>Tags</label>
+		<app-tag-input formControlName="tags"></app-tag-input>
+	</div>
+	<button type="submit" class="btn btn-success">
+		Save
+	</button>
+</form>

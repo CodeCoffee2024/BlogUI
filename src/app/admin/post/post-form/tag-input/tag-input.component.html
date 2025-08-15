@@ -1,0 +1,30 @@
+<div
+	class="tag-input-container"
+	[class.disabled]="disabled"
+>
+	<div class="tag-list">
+		<span class="tag-item" *ngFor="let tag of tags">
+			{{ tag }}
+			<button
+				type="button"
+				class="tag-remove"
+				(click)="removeTag(tag)"
+				[disabled]="disabled"
+			>
+				&times;
+			</button>
+		</span>
+	</div>
+
+	<form (submit)="addTag($event)">
+		<input
+			type="text"
+			[(ngModel)]="newTag"
+			[ngModelOptions]="{ standalone: true }"
+			[placeholder]="placeholder"
+			(keydown)="onKeyDown($event)"
+			[disabled]="disabled"
+			class="tag-input-field"
+		/>
+	</form>
+</div>

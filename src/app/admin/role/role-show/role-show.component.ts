@@ -1,28 +1,27 @@
 import { Component, OnInit } from '@angular/core';
-import { RoleService } from '../role.service';
-import { LoadingService } from '../../../core/services/loading.service';
-import { ToastService } from '../../../core/services/toast.service';
-import { FormErrorService } from '../../../core/services/form-error.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { RoleConstants, RoleDto } from '../models/role';
 import { finalize, forkJoin } from 'rxjs';
+import { LoadingService } from '../../../core/services/loading.service';
+import { NotificationService } from '../../../core/services/notification.service';
+import { TitleService } from '../../../core/services/title.service';
+import { ToastService } from '../../../core/services/toast.service';
 import {
 	AdminHeaderNav,
 	AdminNavItem,
 } from '../../../shared/models/nav.config';
+import {
+	NotificationType,
+	NotificationTypeTitle,
+} from '../../../shared/models/notification';
 import { AdminPage } from '../../../shared/models/page';
+import { ToastType } from '../../../shared/models/toast';
 import {
 	PermissionData,
 	PermissionUtil,
 } from '../../permission/models/permission';
 import { PermissionService } from '../../permission/permission.service';
-import { ToastType } from '../../../shared/models/toast';
-import { NotificationService } from '../../../core/services/notification.service';
-import {
-	NotificationType,
-	NotificationTypeTitle,
-} from '../../../shared/models/notification';
-import { TitleService } from '../../../core/services/title.service';
+import { RoleConstants, RoleDto } from '../models/role';
+import { RoleService } from '../role.service';
 
 @Component({
 	selector: 'app-role-show',
@@ -87,8 +86,11 @@ export class RoleShowComponent implements OnInit {
 				error: (error) => {
 					const message =
 						error?.error?.error?.description ??
-						'Failed to load post data';
+						'Failed to load role data';
 					this.toastService.error(message);
+					if (error.status == 404) {
+						this.route.navigate(['admin/roles']);
+					}
 				},
 			});
 	}

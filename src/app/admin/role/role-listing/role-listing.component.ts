@@ -5,7 +5,6 @@ import { RoleListingOption } from './role.listing.option';
 import { finalize, forkJoin } from 'rxjs';
 import { LoadingService } from '../../../core/services/loading.service';
 import { RoleDto } from '../models/role';
-import { ListingData } from '../../../shared/models/api-result.model';
 import { ToastService } from '../../../core/services/toast.service';
 import {
 	AdminHeaderNav,
@@ -34,7 +33,7 @@ export class RoleListingComponent
 	implements OnInit
 {
 	navigations: AdminNavItem[] = [];
-	list: ListingData<RoleDto[]>;
+	list: RoleDto[];
 	listingData;
 	statuses: StatusDto[];
 	constructor(
@@ -83,7 +82,7 @@ export class RoleListingComponent
 		this.reload();
 	}
 	onPageChange(page) {
-		this.listingOption.page = page;
+		this.listingOption.pageNumber = page;
 		this.reload();
 	}
 
@@ -102,7 +101,7 @@ export class RoleListingComponent
 			.subscribe({
 				next: (res) => {
 					this.list = res.list.data;
-					this.listingData = res.list.data;
+					this.listingData = res.list;
 					this.titleService.setTitle('Roles');
 				},
 				error: (error) => {

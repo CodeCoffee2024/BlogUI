@@ -22,6 +22,20 @@ const routes: Routes = [
 						(m) => m.UserModule
 					),
 			},
+			{
+				path: 'categories',
+				loadChildren: () =>
+					import('./category/category.module').then(
+						(m) => m.CategoryModule
+					),
+			},
+			{
+				path: 'posts',
+				loadChildren: () =>
+					import('./post/post.module').then(
+						(m) => m.PostModule
+					),
+			},
 		],
 	},
 	{

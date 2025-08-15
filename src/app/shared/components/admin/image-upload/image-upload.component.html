@@ -1,0 +1,40 @@
+<div class="image-upload-container">
+	<div
+		class="drop-zone"
+		[class.dragging]="isDragging"
+		(dragover)="onDragOver($event)"
+		(dragleave)="onDragLeave($event)"
+		(drop)="onDrop($event)"
+	>
+		<input
+			type="file"
+			id="fileInput"
+			accept="image/*"
+			(change)="onFileSelected($event)"
+			hidden
+		/>
+
+		<div *ngIf="!previewUrl" class="upload-instructions">
+			<div class="icon">
+				<i class="bi bi-cloud"></i>
+			</div>
+			<h4>Drag & Drop your image here</h4>
+			<p>or</p>
+			<label for="fileInput" class="browse-btn"
+				>Browse Files</label
+			>
+			<p class="requirements">Square image, max 1MB</p>
+		</div>
+
+		<div *ngIf="previewUrl" class="image-preview">
+			<img [src]="previewUrl" alt="Preview" />
+			<button class="remove-btn" (click)="removeImage()">
+				<i class="bi bi-x"></i>
+			</button>
+		</div>
+	</div>
+
+	<div *ngIf="errorMessage" class="error-message">
+		{{ errorMessage }}
+	</div>
+</div>

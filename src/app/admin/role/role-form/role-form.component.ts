@@ -64,7 +64,6 @@ export class RoleFormComponent {
 				permissionsArray.removeAt(index);
 			}
 		}
-		console.log(this.form.form.value);
 		permissionsArray.markAsTouched();
 		permissionsArray.markAsDirty();
 	}

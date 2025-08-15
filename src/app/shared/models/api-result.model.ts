@@ -12,13 +12,9 @@ export class NullApiResult {
 	error: [];
 }
 export class GenericListingResult<T> {
-	data: ListingData<T> | null;
-	page: number;
+	data: T;
+	pageNumber: number;
 	pageSize: number;
 	totalCount: number;
 	totalPages: number;
-	totalRecords: number;
-}
-export class ListingData<T> {
-	items: T[];
 }

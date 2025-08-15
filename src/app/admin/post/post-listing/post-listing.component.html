@@ -1,0 +1,90 @@
+<ng-container>
+	<div class="row">
+		<div class="col-12">
+			<p class="fs-3">Posts</p>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-12">
+			<app-admin-header-nav
+				[navs]="navigations"
+			></app-admin-header-nav>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-12">
+			<app-listing-header
+				[hasSearch]="true"
+				[hasAddBtn]="true"
+				[hasStatus]="true"
+				[entityName]="'Post'"
+				[selectedStatus]="listingOption.status"
+				[statuses]="statuses"
+				(statusChangeResult)="statusChange($event)"
+				(searchResult)="searchChange($event)"
+			></app-listing-header>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-12">
+			<div class="table-responsive" *ngIf="!isLoading">
+				<table
+					class="table table-bordered table-hover align-middle"
+				>
+					<thead class="table-light">
+						<tr>
+							<th>#</th>
+							<th>Title</th>
+							<th>Category</th>
+						</tr>
+					</thead>
+					<tbody *ngIf="list">
+						<tr
+							*ngFor="let item of list; let i = index"
+							[routerLink]="item.id"
+						>
+							<td>{{ i + 1 }}</td>
+							<td>
+								<div class="d-flex">
+									<span class="me-2">{{ item.title }}</span>
+									<app-status-labels
+										[status]="item.status"
+									></app-status-labels>
+								</div>
+								<div class="fs-6">
+									<small>
+										{{ item.description | truncate }}</small
+									>
+								</div>
+								<div class="fs-6">
+									Tags:
+									<span
+										class="tag m-2"
+										*ngFor="let tag of item.tags"
+										>{{ tag.name }}</span
+									>
+								</div>
+							</td>
+							<td>
+								{{ item.category.name }}
+							</td>
+						</tr>
+						<tr *ngIf="list.length === 0">
+							<td
+								colspan="4"
+								class="text-center text-muted"
+							>
+								No records found.
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<app-listing-pagination
+				*ngIf="!isLoading"
+				[listingData]="listingData"
+				(changePage)="onPageChange($event)"
+			></app-listing-pagination>
+		</div>
+	</div>
+</ng-container>
