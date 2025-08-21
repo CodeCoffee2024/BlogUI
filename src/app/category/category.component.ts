@@ -1,30 +1,21 @@
-import {
-	AfterViewInit,
-	Component,
-	OnInit,
-} from '@angular/core';
-import { CategoryResponse } from '../dashboard/models/category';
-import {
-	PostDashboardResponse,
-	PostResponse,
-} from '../dashboard/models/post';
-import { SideNavService } from '../shared/components/client/side-nav/side-nav.service';
-import { DashboardService } from '../dashboard/dashboard.service';
+import { Component, OnInit } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
+import { ActivatedRoute } from '@angular/router';
+import { finalize } from 'rxjs';
+import { environment } from '../../../environment';
 import { LoadingService } from '../core/services/loading.service';
 import { ToastService } from '../core/services/toast.service';
-import { ScreenSizeService } from '../shared/services/screen-size.service';
-import { DomSanitizer } from '@angular/platform-browser';
-import { getImage } from '../shared/utils/file.util';
-import { finalize, forkJoin } from 'rxjs';
-import { Page } from '../shared/models/page';
+import { CategoryResponse } from '../dashboard/models/category';
+import { PostResponse } from '../dashboard/models/post';
+import { SideNavService } from '../shared/components/client/side-nav/side-nav.service';
 import {
 	HeaderNav,
 	NavItem,
 } from '../shared/models/nav.config';
-import { ActivatedRoute } from '@angular/router';
+import { Page } from '../shared/models/page';
+import { ScreenSizeService } from '../shared/services/screen-size.service';
+import { getImage } from '../shared/utils/file.util';
 import { CategoryService } from './category.service';
-import { GenericListingResult } from '../shared/models/api-result.model';
-import { environment } from '../../../environment';
 
 @Component({
 	selector: 'app-category',
@@ -37,6 +28,7 @@ export class CategoryComponent implements OnInit {
 	page = 1;
 	currentNavigation = '';
 	isMobile = false;
+	isLoading = true;
 	isTablet = false;
 	categoryName = '';
 	posts: PostResponse[];
@@ -82,14 +74,20 @@ export class CategoryComponent implements OnInit {
 		this.load(this.page);
 	}
 	load(page) {
+		this.isLoading = true;
 		this.categoryService
 			.getPostByCategory(this.categoryName, page)
-			.pipe(finalize(() => this.loadingService.hide()))
+			.pipe(
+				finalize(() => {
+					this.loadingService.hide();
+					this.isLoading = false;
+				})
+			)
 			.subscribe({
 				next: (res) => {
-					this.posts = (res.data || []).flat() ?? [];
+					this.posts = res.data;
 					this.listingData = res.data;
-					this.totalCount = res.data['totalCount'];
+					this.totalCount = res.totalCount;
 				},
 				error: () => {
 					this.toastService.error('Failed to load posts.');

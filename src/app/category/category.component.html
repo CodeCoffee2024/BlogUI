@@ -1,48 +1,78 @@
-<app-side-nav 
-    [isOpen]="(sideNavService.isOpen$ | async) && !(sideNavService.isDesktop$ | async)" 
-    (closed)="sideNavService.close()">
+<app-side-nav
+	[isOpen]="
+		(sideNavService.isOpen$ | async) &&
+		!(sideNavService.isDesktop$ | async)
+	"
+	(closed)="sideNavService.close()"
+>
 </app-side-nav>
-<app-header (categoryResult)="getCategories($event)"></app-header>
-<hr>
-<div class="container" *ngIf="posts.length > 0">
-    <app-header-nav [navs]="navigations"></app-header-nav>
-    <div class="row">    
-        <div class="col-12">
-            <p class="d-flex align-items-center">
-                <span class="fs-1 fw-bold me-2">{{ categoryName }}</span>
-                <span class="badge rounded-pill text-bg-dark">{{ totalCount + ' articles'}}</span>
-            </p>
-        </div>
-    </div>
-    <div class="row">        
-        <div class="col-12 col-lg-9">
-            <div
-                *ngFor="let post of posts; let i = index">
-                <app-post-template [post]="post" [isMobile]="isMobile"></app-post-template>
-            </div>
-        </div>
-        <div class="d-none d-lg-block col-lg-3">
-            <div class="row">
-                <p class="fs-3 fw-bold">Categories</p>
-            </div>
-            <div class="row" *ngFor="let category of categories">
-                <p class="fs-4"><a [href]="getLink(category.name)">{{ category.name }}</a></p>
-            </div>
-        </div>
-    </div>
-    <div class="row" *ngIf="listingData">
-        <div class="col-12">
-            <app-pagination [listingData]="listingData" (changePage)="onPageChange($event)"></app-pagination>
-        </div>
-    </div>
+<app-header
+	(categoryResult)="getCategories($event)"
+></app-header>
+<hr />
+<div
+	class="container"
+	*ngIf="!isLoading && posts.length > 0"
+>
+	<app-header-nav [navs]="navigations"></app-header-nav>
+	<div class="row">
+		<div class="col-12">
+			<p class="d-flex align-items-center">
+				<span class="fs-1 fw-bold me-2">{{
+					categoryName
+				}}</span>
+				<span class="badge rounded-pill text-bg-dark">{{
+					totalCount + ' articles'
+				}}</span>
+			</p>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-12 col-lg-9">
+			<div *ngFor="let post of posts; let i = index">
+				<app-post-template
+					[post]="post"
+					[isMobile]="isMobile"
+				></app-post-template>
+			</div>
+		</div>
+		<div class="d-none d-lg-block col-lg-3">
+			<div class="row">
+				<p class="fs-3 fw-bold">Categories</p>
+			</div>
+			<div class="row" *ngFor="let category of categories">
+				<p class="fs-4">
+					<a [href]="getLink(category.name)">{{
+						category.name
+					}}</a>
+				</p>
+			</div>
+		</div>
+	</div>
+	<div class="row" *ngIf="listingData">
+		<div class="col-12">
+			<app-pagination
+				[listingData]="listingData"
+				(changePage)="onPageChange($event)"
+			></app-pagination>
+		</div>
+	</div>
 </div>
 <div class="container" *ngIf="!posts || posts.length === 0">
-    <div class="row">
-        <div class="col-12 h-100">
-            <div class="d-flex flex-column justify-content-center align-items-center" style="min-height: 100vh;">
-                <img src="assets/404-1.webp" class="img-fluid" style="max-width: 100%; height: auto;" alt="No Results Found">
-                <p class="fs-2">No results found</p>
-            </div>
-        </div>
-    </div>
+	<div class="row">
+		<div class="col-12 h-100">
+			<div
+				class="d-flex flex-column justify-content-center align-items-center"
+				style="min-height: 100vh"
+			>
+				<img
+					src="assets/404-1.webp"
+					class="img-fluid"
+					style="max-width: 100%; height: auto"
+					alt="No Results Found"
+				/>
+				<p class="fs-2">No results found</p>
+			</div>
+		</div>
+	</div>
 </div>

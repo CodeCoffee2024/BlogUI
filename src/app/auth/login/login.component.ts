@@ -4,15 +4,15 @@ import {
 	FormGroup,
 	Validators,
 } from '@angular/forms';
-import { AuthService } from '../../core/services/auth.service';
 import { Router } from '@angular/router';
-import { AuthRequest } from '../models/auth-request';
-import { InputTypes } from '../../shared/constants/input-type';
-import { ToastService } from '../../core/services/toast.service';
-import { LoadingService } from '../../core/services/loading.service';
 import { finalize } from 'rxjs';
+import { AuthService } from '../../core/services/auth.service';
 import { FormErrorService } from '../../core/services/form-error.service';
+import { LoadingService } from '../../core/services/loading.service';
 import { TitleService } from '../../core/services/title.service';
+import { ToastService } from '../../core/services/toast.service';
+import { InputTypes } from '../../shared/constants/input-type';
+import { AuthRequest } from '../models/auth-request';
 
 @Component({
 	selector: 'app-login',
@@ -66,7 +66,7 @@ export class LoginComponent {
 						res.data.token,
 						res.data.refreshToken
 					);
-					this.router.navigate(['admin']);
+					this.router.navigate(['admin/dashboard']);
 					this.formErrorService.clearServerErrorOnChange(
 						this.form
 					);

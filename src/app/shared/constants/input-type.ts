@@ -5,4 +5,5 @@ export enum InputTypes {
 	Checkbox = 'checkbox',
 	Email = 'email',
 	Date = 'date',
+	Month = 'month',
 }

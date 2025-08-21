@@ -87,7 +87,6 @@ export class PostForm extends FormModel {
 		formData.append('categoryId', categoryId);
 
 		const imageControl = this.form.get('Img');
-		console.log(imageControl);
 		if (imageControl?.value) {
 			const imageFile = imageControl.value;
 

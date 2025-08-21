@@ -1,26 +1,17 @@
 import {
 	AfterViewInit,
 	Component,
-	HostListener,
-	OnDestroy,
 	OnInit,
 } from '@angular/core';
-import { SideNavService } from '../shared/components/client/side-nav/side-nav.service';
-import { LoadingService } from '../core/services/loading.service';
-import {
-	debounceTime,
-	finalize,
-	forkJoin,
-	fromEvent,
-	Subscription,
-} from 'rxjs';
-import { ToastService } from '../core/services/toast.service';
-import { CategoryResponse } from './models/category';
-import { PostDashboardResponse } from './models/post';
-import { DashboardService } from './dashboard.service';
-import { getImage } from '../shared/utils/file.util';
-import { ScreenSizeService } from '../shared/services/screen-size.service';
 import { DomSanitizer } from '@angular/platform-browser';
+import { finalize, forkJoin } from 'rxjs';
+import { LoadingService } from '../core/services/loading.service';
+import { ToastService } from '../core/services/toast.service';
+import { SideNavService } from '../shared/components/client/side-nav/side-nav.service';
+import { ScreenSizeService } from '../shared/services/screen-size.service';
+import { getImage } from '../shared/utils/file.util';
+import { DashboardService } from './dashboard.service';
+import { PostDashboardResponse } from './models/post';
 
 @Component({
 	selector: 'app-dashboard',

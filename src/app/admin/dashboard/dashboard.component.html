@@ -1,0 +1,186 @@
+<div class="row">
+	<div class="col-12">
+		<p class="fs-3">Dashboard</p>
+	</div>
+</div>
+<div class="row">
+	<div class="col-12">
+		<app-admin-header-nav
+			[navs]="navigations"
+		></app-admin-header-nav>
+	</div>
+</div>
+<div
+	class="row g-3 mt-2 dashboard-header"
+	*ngIf="!isLoading"
+>
+	<div class="col-12 col-md-6 col-lg-3">
+		<div class="card dashboard-card">
+			<div class="card-body text-center">
+				<div
+					class="d-flex justify-content-center align-items-center"
+				>
+					<i
+						class="bi me-2 bi-journal-text dashboard-icon"
+					></i>
+					<h5 class="dashboard-label">Post Count</h5>
+				</div>
+				<p class="dashboard-value">
+					{{ dashboardHeaderValue('Post Count') }}
+				</p>
+			</div>
+		</div>
+	</div>
+
+	<div class="col-12 col-md-6 col-lg-3">
+		<div class="card dashboard-card">
+			<div class="card-body text-center">
+				<div
+					class="d-flex justify-content-center align-items-center"
+				>
+					<i class="bi me-2 bi-people dashboard-icon"></i>
+					<h5 class="dashboard-label">User Count</h5>
+				</div>
+				<p class="dashboard-value">
+					{{ dashboardHeaderValue('User Count') }}
+				</p>
+			</div>
+		</div>
+	</div>
+
+	<div class="col-12 col-md-6 col-lg-3">
+		<div class="card dashboard-card">
+			<div class="card-body text-center">
+				<div
+					class="d-flex justify-content-center align-items-center"
+				>
+					<i
+						class="bi me-2 bi-calendar-week dashboard-icon"
+					></i>
+					<h5 class="dashboard-label">Posts This Week</h5>
+				</div>
+				<p class="dashboard-value">
+					{{ dashboardHeaderValue('Post Count Per Week') }}
+				</p>
+			</div>
+		</div>
+	</div>
+
+	<div class="col-12 col-md-6 col-lg-3">
+		<div class="card dashboard-card">
+			<div class="card-body text-center">
+				<div
+					class="d-flexustify-content-center align-items-center"
+				>
+					<i
+						class="bi me-2 jbi-person-plus dashboard-icon"
+					></i>
+					<h5 class="dashboard-label">Users This Week</h5>
+				</div>
+				<p class="dashboard-value">
+					{{ dashboardHeaderValue('User Count Per Week') }}
+				</p>
+			</div>
+		</div>
+	</div>
+</div>
+<form
+	[formGroup]="usersPerMonthForm.form"
+	*ngIf="!isLoading"
+	(ngSubmit)="onSubmit()"
+>
+	<div class="row mt-3">
+		<label class="fs-3 fw-bold">Users Per Month</label>
+		<div class="col-12 col-md-6">
+			<div class="mb-3">
+				<app-input
+					[inputType]="InputTypes.Month"
+					inputId="dateFrom"
+					[formGroup]="usersPerMonthForm.form"
+					[controlName]="'dateFrom'"
+					[label]="'Month From'"
+				></app-input>
+			</div>
+		</div>
+		<div class="col-12 col-md-6">
+			<div class="mb-3">
+				<app-input
+					[inputType]="InputTypes.Month"
+					inputId="dateTo"
+					[formGroup]="usersPerMonthForm.form"
+					[controlName]="'dateTo'"
+					[label]="'Month To'"
+				></app-input>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-12 d-flex justify-content-end">
+			<input
+				type="submit"
+				value="Search"
+				class="btn btn-success"
+			/>
+		</div>
+	</div>
+</form>
+<div class="row" *ngIf="!isLoading">
+	<div class="col-12">
+		<app-chart
+			[chartData]="usersPerMonth.values"
+			[chartCategories]="usersPerMonth.labels"
+			[chartTitle]="'Users Per Month'"
+		>
+		</app-chart>
+	</div>
+</div>
+<form
+	[formGroup]="postsPerMonthForm.form"
+	*ngIf="!isLoading"
+	(ngSubmit)="onSubmit('post')"
+>
+	<div class="row mt-3">
+		<label class="fs-3 fw-bold">Posts Per Month</label>
+		<div class="col-12 col-md-6">
+			<div class="mb-3">
+				<app-input
+					[inputType]="InputTypes.Month"
+					inputId="dateFrom"
+					[formGroup]="postsPerMonthForm.form"
+					[controlName]="'dateFrom'"
+					[label]="'Month From'"
+				></app-input>
+			</div>
+		</div>
+		<div class="col-12 col-md-6">
+			<div class="mb-3">
+				<app-input
+					[inputType]="InputTypes.Month"
+					inputId="dateTo"
+					[formGroup]="postsPerMonthForm.form"
+					[controlName]="'dateTo'"
+					[label]="'Month To'"
+				></app-input>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-12 d-flex justify-content-end">
+			<input
+				type="submit"
+				value="Search"
+				class="btn btn-success"
+			/>
+		</div>
+	</div>
+</form>
+<div class="row" *ngIf="!isLoading">
+	<div class="col-12">
+		<app-chart
+			[chartData]="postsPerMonth.values"
+			[chartCategories]="postsPerMonth.labels"
+			[chartTitle]="'Posts Per Month'"
+		>
+		</app-chart>
+	</div>
+</div>

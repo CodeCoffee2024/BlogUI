@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import {
 	ControlValueAccessor,
 	FormControl,
@@ -79,6 +79,16 @@ export class InputComponent
 	}
 	onInput(event: Event): void {
 		const input = event.target as HTMLInputElement;
+		if (this.inputType === InputTypes.Month) {
+			let value = this.formControl.value;
+			if (value && /^\d{4}-\d{2}$/.test(value)) {
+				this.formControl.setValue(value, {
+					emitEvent: false,
+				});
+			} else {
+				this.formControl.setValue('', { emitEvent: false });
+			}
+		}
 		if (this.inputType === 'number') {
 			const regex = /^\d*(\.\d{0,2})?$/;
 			if (!regex.test(input.value)) {
@@ -102,7 +112,6 @@ export class InputComponent
 		}
 	}
 
-	/** ControlValueAccessor Implementation */
 	writeValue(value): void {
 		if (this.formControl) {
 			this.formControl.setValue(value, {

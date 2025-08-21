@@ -1,0 +1,32 @@
+.dashboard-card {
+	background-color: var(
+		--default-text-color
+	); // black background
+	border: none;
+	border-radius: 12px;
+	box-shadow: 0 2px 6px var(--default-text-color);
+	transition: transform 0.2s ease-in-out;
+
+	&:hover {
+		transform: translateY(-4px);
+	}
+
+	.dashboard-label {
+		font-size: 1rem;
+		font-weight: 600;
+		color: var(--default-background); // gray label
+		margin-bottom: 8px;
+	}
+
+	.dashboard-icon {
+		font-size: 1rem;
+		color: var(--default-background);
+		margin-bottom: 8px;
+		display: block;
+	}
+	.dashboard-value {
+		font-size: 1.8rem;
+		font-weight: 700;
+		color: var(--default-background); // white numbers
+	}
+}
